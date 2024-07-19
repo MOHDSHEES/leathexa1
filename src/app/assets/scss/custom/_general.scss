@@ -1,0 +1,21 @@
+/* // _helper.scss */
+
+/*********************************/
+/*             Helper            */
+/*===============================*/
+
+body {
+    @apply font-dm_sans text-base text-black dark:text-white;
+}
+
+p {
+    @apply leading-relaxed;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    @apply font-dm_sans leading-normal;
+}
+
+::selection {
+    @apply bg-slate-900 text-white;
+}

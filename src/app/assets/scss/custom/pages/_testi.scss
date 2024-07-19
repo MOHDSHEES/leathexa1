@@ -1,0 +1,42 @@
+/*********************************/
+/*         Testimonial           */
+/*===============================*/
+.tns-nav {
+    @apply text-center mt-3;
+    button {
+        @apply rounded-full bg-black/20 dark:bg-white/20 transition-all duration-500 ease-in-out border-2 border-white dark:border-slate-900 m-1 p-[2px];
+        &.tns-nav-active {
+            @apply bg-orange-500 border-orange-500;
+        }
+    }
+}
+
+/* Tns control */
+.tns-controls {
+    button[data-controls="prev"],
+    button[data-controls="next"] {
+        @apply absolute top-2/4 -translate-y-2/4 text-base w-8 h-8 rounded-full bg-white dark:bg-slate-900 text-dark dark:text-white border-0 transition-all duration-500 ease-in-out z-10 shadow-md dark:shadow-gray-700;
+
+        &:hover {
+            @apply bg-orange-500 text-white;
+        }
+    }
+    button[data-controls="prev"] {
+        @apply start-0;
+    }
+    button[data-controls="next"] {
+        @apply end-0;
+    }
+}
+
+/* RTL */
+html[dir="rtl"]{
+    .tns-inner, .tns-nav, .swiper-slider-hero {
+        direction: ltr !important;
+    }
+
+    .tns-visually-hidden {
+        left: 0 !important;
+        visibility: hidden;
+    }
+}
