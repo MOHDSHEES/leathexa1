@@ -15,6 +15,7 @@ import {
 } from "../assets/icons/vander";
 import { signOut } from "next-auth/react";
 import { MyContext } from "@/src/context";
+import { usePathname } from "next/navigation";
 
 export default function Navbar({ navClass, navlight }) {
   const { setBackDropOpen } = useContext(MyContext);
@@ -28,6 +29,16 @@ export default function Navbar({ navClass, navlight }) {
   let dropdownRef = useRef(null);
   let cartRef = useRef(null);
   let userRef = useRef(null);
+  const pathname = usePathname();
+  useEffect(() => {
+    setManu("");
+    setToggle(false);
+    setSubManu("");
+    setIsOpen(false);
+    setCartManu(false);
+    setUserManu(false);
+    // Your custom logic here
+  }, [pathname]);
 
   useEffect(() => {
     const handleScroll = () => {
