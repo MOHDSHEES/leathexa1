@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 import Tagline from "../components/tagline";
-// import Navbar from "../components/navbar";
+import Navbar from "../components/navbar";
 import HeroSlider from "../components/hero-slider";
 import FeaturedCollection from "../components/feature-collection";
 import Cta from "../components/cta";
