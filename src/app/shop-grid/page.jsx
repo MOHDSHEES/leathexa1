@@ -2,8 +2,8 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-import Navbar from "../components/navbar";
-import Footer from "../components/footer";
+// import Navbar from "../components/navbar";
+// import Footer from "../components/footer";
 import Switcher from "../components/switcher";
 
 import {
@@ -14,12 +14,12 @@ import {
   FiChevronRight,
 } from "../assets/icons/vander";
 import { newProduct } from "../data/data";
-import ScrollToTop from "../components/scroll-to-top";
+// import ScrollToTop from "../components/scroll-to-top";
 
 export default function ShopGrid() {
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <section className="relative table w-full py-20 lg:py-24 md:pt-28 bg-gray-50 dark:bg-slate-800">
         <div className="container relative">
           <div className="grid grid-cols-1 mt-14">
@@ -250,9 +250,9 @@ export default function ShopGrid() {
           </div>
         </div>
       </section>
-      <Footer />
+      {/* <Footer /> */}
       <Switcher />
-      <ScrollToTop />
+      {/* <ScrollToTop /> */}
     </>
   );
 }
