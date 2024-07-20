@@ -19,11 +19,8 @@ export default function IndexTwo() {
   return (
     <>
       <Tagline />
-
       <Navbar navClass="defaultscroll is-sticky tagline-height" />
-
       <HeroSlider />
-
       <section className="relative md:py-24 py-16">
         <FeaturedCollection />
 
