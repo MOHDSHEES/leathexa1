@@ -17,6 +17,7 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { signIn } from "next-auth/react";
 import { closeMessage } from "../functions/message";
 import BackToHome from "../back-to-home";
+import DOMPurify from "dompurify";
 
 const LoginComponent = () => {
   //   const [validated, setValidated] = useState(false);
