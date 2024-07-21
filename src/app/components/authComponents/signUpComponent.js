@@ -7,6 +7,8 @@ import axios from "axios";
 import { MyContext } from "@/src/context";
 import { closeMessage, openMessage } from "../functions/message";
 import BackToHome from "../back-to-home";
+import DOMPurify from "dompurify";
+import Joi from "joi";
 
 const SignUpComponent = () => {
   const [state, setstate] = useState({
@@ -40,12 +42,21 @@ const SignUpComponent = () => {
     const { name, value } = event.target;
     setstate({
       ...state,
-      [name]: value.trim(),
+      [name]: DOMPurify.sanitize(value.trim()),
     });
   };
 
   async function submitHandler(e) {
     e.preventDefault();
+    const { error } = userSchema.validate({
+      name: state.name,
+      email: state.email,
+      password: state.password,
+    });
+    if (error) {
+      closeMessage(messageApi, error.details[0].message, "error");
+      return;
+    }
     if (state.password === confirmPassword) {
       if (isVerified && isVerified) {
         setDisable(true);
@@ -57,7 +68,7 @@ const SignUpComponent = () => {
           closeMessage(messageApi, "Sucessfully Registered", "success");
           //   navigate("/edit", { replace: true });
           clear();
-          router.replace("/login");
+          router.replace("/auth/login");
         } else if (
           data &&
           data.status === 500 &&
@@ -253,3 +264,9 @@ const SignUpComponent = () => {
 };
 
 export default SignUpComponent;
+
+const userSchema = Joi.object({
+  name: Joi.string(),
+  email: Joi.string(),
+  password: Joi.string().min(6),
+});

@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 
 // import Navbar from "../components/navbar";
-import Usertab from "../components/user-tab";
+import Usertab from "../components/user/user-tab";
 // import Footer from "../components/footer";
 import Switcher from "../components/switcher";
 // import ScrollToTop from "../components/scroll-to-top";

@@ -1,7 +1,7 @@
 import React from "react";
 
 // import Navbar from "../components/navbar";
-import Usertab from "../components/user-tab";
+import Usertab from "../components/user/user-tab";
 // import Footer from "../components/footer";
 import Switcher from "../components/switcher";
 

@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { MyContext } from "../../../context";
@@ -41,12 +41,12 @@ const LoginComponent = () => {
     if (name === "email")
       setstate({
         ...state,
-        [name]: value.trim().toLowerCase(),
+        [name]: DOMPurify.sanitize(value.trim().toLowerCase()),
       });
     else
       setstate({
         ...state,
-        [name]: value.trim(),
+        [name]: DOMPurify.sanitize(value.trim()),
       });
   };
   //   console.log(state);

@@ -11,6 +11,9 @@ const userSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
+  whatsAppNo: {
+    type: String,
+  },
   password: {
     type: String,
     required: true,
@@ -24,7 +27,15 @@ const userSchema = new mongoose.Schema({
     default: 1,
   },
 });
-
+// Middleware to hash password before updating
+userSchema.pre("findOneAndUpdate", async function (next) {
+  const update = this.getUpdate();
+  if (update.password) {
+    const salt = await bcrypt.genSalt(10);
+    update.password = await bcrypt.hash(update.password, salt);
+  }
+  next();
+});
 // Middleware to hash password before saving
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) {

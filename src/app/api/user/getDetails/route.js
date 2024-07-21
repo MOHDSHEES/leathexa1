@@ -27,7 +27,7 @@ export async function POST(req) {
         throw new Error(`Unsupported HTTP method: ${req.method}`);
       }
     } catch (error) {
-      return NextResponse.json({ error });
+      return NextResponse.json({ status: 500, msg: error });
     }
   } else return NextResponse.json({ status: 501, msg: "Not Authorized" });
 }

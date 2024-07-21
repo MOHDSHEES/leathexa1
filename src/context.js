@@ -16,6 +16,16 @@ const MyProvider = ({ children }) => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [backDropOpen, setBackDropOpen] = useState(false);
 
+  const [csrfToken, setCsrfToken] = useState("");
+
+  useEffect(() => {
+    const fetchCsrfToken = async () => {
+      const { data } = await axios.post("/api/getCsrfToken");
+      setCsrfToken(data.token);
+    };
+    fetchCsrfToken();
+  }, []);
+
   async function getUser() {
     flag = 0;
     const { data: da } = await axios.post("/api/user/getDetails", {
@@ -35,7 +45,7 @@ const MyProvider = ({ children }) => {
     if (data && data.user && !user) {
       setLoading(true);
 
-      setUser(data.user);
+      // setUser(data.user);
       if (flag) {
         getUser();
       }
@@ -56,6 +66,8 @@ const MyProvider = ({ children }) => {
         setBackDropOpen,
         isAdmin,
         setIsAdmin,
+        csrfToken,
+        setCsrfToken,
       }}
     >
       {contextHolder} {children}

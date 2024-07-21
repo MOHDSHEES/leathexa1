@@ -10,12 +10,12 @@ import {
   FiFileText,
   FiShare2,
   FiBell,
-  FiSettings,
   FiLogOut,
-} from "../assets/icons/vander";
+} from "../../assets/icons/vander";
 import { MyContext } from "@/src/context";
 import { Avatar, Skeleton } from "@mui/material";
 import { signOut } from "next-auth/react";
+import ReceiptLongIcon from "@mui/icons-material/ReceiptLong";
 
 export default function Usertab() {
   const { user, setBackDropOpen } = useContext(MyContext);
@@ -100,7 +100,7 @@ export default function Usertab() {
                 }`}
               >
                 <Link
-                  href="/user-account"
+                  href="/user/account"
                   className="navbar-link text-slate-400 flex items-center py-2 rounded"
                 >
                   <span className="me-2 mb-0">
@@ -192,17 +192,17 @@ export default function Usertab() {
 
               <li
                 className={`navbar-item account-menu ms-0 ${
-                  current === "/user-setting" ? "active" : ""
+                  current === "/user/orders" ? "active" : ""
                 }`}
               >
                 <Link
-                  href="/user-setting"
+                  href="/user/orders"
                   className="navbar-link text-slate-400 flex items-center py-2 rounded"
                 >
                   <span className="me-2 mb-0">
-                    <FiSettings className="size-4"></FiSettings>
+                    <ReceiptLongIcon className="size-4" />
                   </span>
-                  <h6 className="mb-0 font-medium">Settings</h6>
+                  <h6 className="mb-0 font-medium">My Orders</h6>
                 </Link>
               </li>
 

@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 // import Navbar from "../components/navbar";
-import Usertab from "../components/user-tab";
+import Usertab from "../components/user/user-tab";
 // import Footer from "../components/footer";
 import Switcher from "../components/switcher";
 import AddPaymentBtn from "../components/add-payment-btn";
