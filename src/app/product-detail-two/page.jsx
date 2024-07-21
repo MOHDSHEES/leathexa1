@@ -14,8 +14,8 @@ import ProductViewTwo from "../components/product-view-two";
 export default function ProductDetailTwo() {
   return (
     <>
-      <Tagline />
-      <Navbar navClass="defaultscroll is-sticky tagline-height" />
+      {/* <Tagline />
+      <Navbar navClass="defaultscroll is-sticky tagline-height" /> */}
       <section className="relative table w-full py-20 lg:py-24 md:pt-28 bg-gray-50 dark:bg-slate-800">
         <div className="container relative">
           <div className="grid grid-cols-1 mt-14">
