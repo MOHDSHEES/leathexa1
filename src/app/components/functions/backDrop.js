@@ -5,7 +5,7 @@ import { Spin } from "antd";
 const BackdropComponent = ({ open }) => {
   return (
     <Backdrop
-      sx={{ color: "#fff", zIndex: 999 }}
+      sx={{ color: "#fff", zIndex: 9999 }}
       open={open}
       // onClick={handleClose}
     >

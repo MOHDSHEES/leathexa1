@@ -26,6 +26,40 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     default: 1,
   },
+  billingAddress: {
+    address: {
+      type: String,
+    },
+    city: {
+      type: String,
+    },
+    postCode: {
+      type: String,
+    },
+    country: {
+      type: String,
+    },
+    mobileNo: {
+      type: String,
+    },
+  },
+  shippingAddress: {
+    address: {
+      type: String,
+    },
+    city: {
+      type: String,
+    },
+    postCode: {
+      type: String,
+    },
+    country: {
+      type: String,
+    },
+    mobileNo: {
+      type: String,
+    },
+  },
 });
 // Middleware to hash password before updating
 userSchema.pre("findOneAndUpdate", async function (next) {

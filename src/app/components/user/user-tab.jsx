@@ -1,21 +1,15 @@
 "use client";
 import React, { useState, useEffect, useContext } from "react";
-
 import Link from "next/link";
-
-import {
-  FiAirplay,
-  FiEdit,
-  FiCreditCard,
-  FiFileText,
-  FiShare2,
-  FiBell,
-  FiLogOut,
-} from "../../assets/icons/vander";
+import { FiFileText, FiShare2, FiBell } from "../../assets/icons/vander";
 import { MyContext } from "@/src/context";
 import { Avatar, Skeleton } from "@mui/material";
 import { signOut } from "next-auth/react";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import ReceiptLongIcon from "@mui/icons-material/ReceiptLong";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import CreditCardIcon from "@mui/icons-material/CreditCard";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 export default function Usertab() {
   const { user, setBackDropOpen } = useContext(MyContext);
@@ -51,7 +45,7 @@ export default function Usertab() {
                   <Avatar
                     sx={{
                       bgcolor: "green",
-                      height: "100px",
+                      height: "110px",
                       width: "100%",
                       fontSize: "40px",
                     }}
@@ -104,7 +98,8 @@ export default function Usertab() {
                   className="navbar-link text-slate-400 flex items-center py-2 rounded"
                 >
                   <span className="me-2 mb-0">
-                    <FiAirplay className="size-4"></FiAirplay>
+                    <AccountCircleIcon className="size-4" />
+                    {/* <FiAirplay className="size-4"></FiAirplay> */}
                   </span>
                   <h6 className="mb-0 font-medium">Account</h6>
                 </Link>
@@ -112,15 +107,16 @@ export default function Usertab() {
 
               <li
                 className={`navbar-item account-menu ms-0 ${
-                  current === "/user-billing" ? "active" : ""
+                  current === "/user/billing" ? "active" : ""
                 }`}
               >
                 <Link
-                  href="/user-billing"
+                  href="/user/billing"
                   className="navbar-link text-slate-400 flex items-center py-2 rounded"
                 >
                   <span className="me-2 mb-0">
-                    <FiEdit className="size-4"></FiEdit>
+                    <LocationOnIcon className="size-4" />
+                    {/* <FiEdit className="size-4"></FiEdit> */}
                   </span>
                   <h6 className="mb-0 font-medium">Billing Info</h6>
                 </Link>
@@ -136,7 +132,8 @@ export default function Usertab() {
                   className="navbar-link text-slate-400 flex items-center py-2 rounded"
                 >
                   <span className="me-2 mb-0">
-                    <FiCreditCard className="size-4"></FiCreditCard>
+                    <CreditCardIcon className="size-4" />
+                    {/* <FiCreditCard className="size-4"></FiCreditCard> */}
                   </span>
                   <h6 className="mb-0 font-medium">Payment</h6>
                 </Link>
@@ -215,7 +212,8 @@ export default function Usertab() {
                   className="navbar-link text-slate-400 flex items-center py-2 rounded"
                 >
                   <span className="me-2 mb-0">
-                    <FiLogOut className="size-4"></FiLogOut>
+                    <LogoutIcon className="size-4" />
+                    {/* <FiLogOut className="size-4"></FiLogOut> */}
                   </span>
                   <h6 className="mb-0 font-medium">Sign Out</h6>
                 </button>

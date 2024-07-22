@@ -3,7 +3,6 @@ import React from "react";
 import Usertab from "../../components/user/user-tab";
 import Details from "../../components/user/details";
 import ResetPassword from "../../components/user/resetPassword";
-import DeleteAccount from "../../components/user/deleteAccount";
 
 export default function UserAccount() {
   return (
@@ -21,7 +20,7 @@ export default function UserAccount() {
             <div className="lg:w-3/4 md:w-2/3 md:px-3 mt-6 md:mt-0">
               <Details />
               <ResetPassword />
-              <DeleteAccount />
+              {/* <DeleteAccount /> */}
             </div>
           </div>
         </div>

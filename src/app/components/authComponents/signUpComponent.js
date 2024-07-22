@@ -40,10 +40,16 @@ const SignUpComponent = () => {
   }
   const Inputchange = (event) => {
     const { name, value } = event.target;
-    setstate({
-      ...state,
-      [name]: DOMPurify.sanitize(value.trim()),
-    });
+    if (name === email)
+      setstate({
+        ...state,
+        [name]: DOMPurify.sanitize(value.toLowerCase().trim()),
+      });
+    else
+      setstate({
+        ...state,
+        [name]: DOMPurify.sanitize(value.trim()),
+      });
   };
 
   async function submitHandler(e) {
