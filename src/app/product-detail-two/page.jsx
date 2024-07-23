@@ -3,10 +3,9 @@ import Link from "next/link";
 import Tagline from "../components/tagline";
 import ProductDetail from "../components/product-detail";
 import ProductAboutTab from "../components/product-about-tab";
-import ArrivalItem from "../components/arrival-item";
 import ProductViewTwo from "../components/product-view-two";
-import MainLayout from "../components/layout/mainLayout";
 import Navbar from "../components/navbar";
+import ArrivalItem from "../components/newArrival";
 
 export default function ProductDetailTwo() {
   return (
