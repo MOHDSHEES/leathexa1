@@ -28,11 +28,11 @@ const MyProvider = ({ children }) => {
 
   async function getUser() {
     flag = 0;
-    const { data: da } = await axios.post("/api/user/getDetails", {
+    const response = await axios.post("/api/user/getDetails", {
       email: data.user.email,
     });
-    if (da && da.status === 200) {
-      setUser(da.data);
+    if (response && response.data && response.data.status === 200) {
+      setUser(response.data.data);
     } else {
       signOut();
     }

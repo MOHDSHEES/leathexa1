@@ -3,23 +3,22 @@ import Link from "next/link";
 import Image from "next/image";
 
 import Tagline from "../components/tagline";
-import Navbar from "../components/navbar";
-import HeroSlider from "../components/hero-slider";
-import FeaturedCollection from "../components/feature-collection";
-import Cta from "../components/cta";
+import HeroSlider from "../components/homePage/hero-slider";
+import FeaturedCollection from "../components/homePage/feature-collection";
+import Cta from "../components/homePage/cta/cta";
 import Client from "../components/client";
-// import Footer from "../components/footer";
-import Switcher from "../components/switcher";
-// import ScrollToTop from "../components/scroll-to-top";
 
 import { newProduct } from "../data/data";
 import { FiHeart, FiEye, FiBookmark } from "../assets/icons/vander";
+import MainLayout from "../components/layout/mainLayout";
+import Navbar from "../components/navbar";
 
 export default function IndexTwo() {
   return (
     <>
       <Tagline />
       <Navbar navClass="defaultscroll is-sticky tagline-height" />
+      {/* <MainLayout> */}
       <HeroSlider />
       <section className="relative md:py-24 py-16">
         <FeaturedCollection />
@@ -311,10 +310,7 @@ export default function IndexTwo() {
 
         <Client />
       </section>
-
-      {/* <Footer/> */}
-      <Switcher />
-      {/* <ScrollToTop/> */}
+      {/* </MainLayout> */}
     </>
   );
 }

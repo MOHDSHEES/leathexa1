@@ -1,15 +1,10 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-
-import Navbar from "../components/navbar";
 import MobileApp from "../components/mobile-app";
-// import Footer from "../components/footer";
-import Switcher from "../components/switcher";
-
 import { newProduct, salesData } from "../data/data";
 import { FiHeart, FiEye, FiBookmark } from "../assets/icons/vander";
-// import ScrollToTop from "../components/scroll-to-top";
+import Navbar from "../components/navbar";
 
 export default function Sale() {
   return (
@@ -224,9 +219,6 @@ export default function Sale() {
 
         <MobileApp />
       </section>
-      {/* <Footer/> */}
-      <Switcher />
-      {/* <ScrollToTop/> */}
     </>
   );
 }

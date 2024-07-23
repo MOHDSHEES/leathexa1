@@ -1,21 +1,19 @@
 import React from "react";
 import Link from "next/link";
-
 import Tagline from "../components/tagline";
-import Navbar from "../components/navbar";
 import ProductDetail from "../components/product-detail";
 import ProductAboutTab from "../components/product-about-tab";
 import ArrivalItem from "../components/arrival-item";
-// import Footer from "../components/footer";
-import Switcher from "../components/switcher";
 import ProductViewTwo from "../components/product-view-two";
-// import ScrollToTop from "../components/scroll-to-top";
+import MainLayout from "../components/layout/mainLayout";
+import Navbar from "../components/navbar";
 
 export default function ProductDetailTwo() {
   return (
     <>
-      {/* <Tagline />
-      <Navbar navClass="defaultscroll is-sticky tagline-height" /> */}
+      <Tagline />
+      <Navbar navClass="defaultscroll is-sticky tagline-height" />
+      {/* <MainLayout> */}
       <section className="relative table w-full py-20 lg:py-24 md:pt-28 bg-gray-50 dark:bg-slate-800">
         <div className="container relative">
           <div className="grid grid-cols-1 mt-14">
@@ -64,10 +62,7 @@ export default function ProductDetailTwo() {
 
         <ArrivalItem />
       </section>
-
-      {/* <Footer/> */}
-      <Switcher />
-      {/* <ScrollToTop/> */}
+      {/* </MainLayout> */}
     </>
   );
 }

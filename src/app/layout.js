@@ -4,9 +4,6 @@ import "./assets/css/materialdesignicons.css";
 import "./assets/css/style.css";
 import { MyProvider } from "../context";
 import SessionProviderWrapper from "./components/functions/sessionProviderWrapper";
-import Navbar from "./components/navbar";
-import Footer from "./components/footer";
-import ScrollToTop from "./components/scroll-to-top";
 
 const dm_sans = DM_Sans({
   subsets: ["latin"],
@@ -25,12 +22,7 @@ export default function RootLayout({ children }) {
     <html lang="en" className="light scroll-smooth dm_sans" dir="ltr">
       <body className={`${dm_sans.variable} dark:bg-slate-900`}>
         <SessionProviderWrapper>
-          <MyProvider>
-            <Navbar navClass="defaultscroll is-sticky" />
-            {children}
-            <Footer />
-            <ScrollToTop />
-          </MyProvider>
+          <MyProvider>{children}</MyProvider>
         </SessionProviderWrapper>
       </body>
     </html>
