@@ -11,7 +11,6 @@ import NewArrival from "./components/homePage/newArrival";
 import BestSeller from "./components/homePage/bestSeller";
 import Client from "./components/homePage/client";
 import CtaOne from "./components/homePage/cta/cta-one";
-import Head from "next/head";
 
 export default function Home() {
   return (

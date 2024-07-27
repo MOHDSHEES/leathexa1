@@ -15,6 +15,14 @@ const dm_sans = DM_Sans({
 //   description: "Next Js Fashion Store eCommerce Tailwind CSS Landing Template",
 // };
 
+export const metadata = {
+  title: {
+    // template: '%s | Leathexa',
+    default: "Leathexa",
+  },
+  description: "An E-commerse Website",
+};
+
 export default function RootLayout({ children }) {
   return (
     // <SessionProvider>
