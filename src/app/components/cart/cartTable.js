@@ -1,9 +1,33 @@
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useContext, useState } from "react";
 import Counter from "./counter";
+import { MyContext } from "@/src/context";
+import { closeMessage } from "../functions/message";
+import axios from "axios";
+import CartTableRow from "./cartTableRow";
 
 const CartTable = ({ cartItems, total, setCartItems }) => {
+  const { csrfToken, messageApi, user } = useContext(MyContext);
+  const [disable, setDisable] = useState(false);
+  async function removeItem(item, setRemoving) {
+    setRemoving(true);
+    setDisable(true);
+    const { data } = await axios.post("/api/cart/product/remove", {
+      csrfToken: csrfToken,
+      cartId: cartItems._id,
+      productId: item.product._id,
+      userId: user._id,
+    });
+    if (data.status === 200) {
+      closeMessage(messageApi, "Successfully Removed", "success");
+      setCartItems(data.data);
+    } else {
+      closeMessage(messageApi, data.msg, "error");
+    }
+    setDisable(false);
+    setRemoving(false);
+  }
   //   console.log("cartItems", cartItems);
   return (
     <div className="container relative">
@@ -33,53 +57,65 @@ const CartTable = ({ cartItems, total, setCartItems }) => {
             <tbody>
               {cartItems.cartItems.map((item, index) => {
                 return (
-                  <tr
-                    className="bg-white dark:bg-slate-900 border-t border-gray-100 dark:border-gray-800"
+                  <CartTableRow
                     key={index}
-                  >
-                    <td className="p-4">
-                      <Link href="">
-                        <i className="mdi mdi-window-close text-red-600"></i>
-                      </Link>
-                    </td>
-                    <td className="p-4">
-                      <span className="flex items-center">
-                        <Image
-                          src="/images/shop/black-print-t-shirt.jpg"
-                          width={48}
-                          height={62}
-                          className="rounded shadow dark:shadow-gray-800 w-12"
-                          alt=""
-                        />
-                        <span className="ms-3">
-                          <span className="block font-semibold">
-                            {item.product.name}
-                          </span>
-                        </span>
-                      </span>
-                    </td>
-                    <td className="p-4 text-center">$ {item.product.price}</td>
-                    <td className="p-4 text-center">
-                      $ {item.product.discount} %
-                    </td>
-                    <td className="p-4 text-center">
-                      <Counter
-                        qtn={item.quantity ? item.quantity : 1}
-                        total=""
-                        item={item}
-                        setCartItems={setCartItems}
-                        cartItems={cartItems}
-                      />
-                    </td>
-                    <td className="p-4  text-end">
-                      ${" "}
-                      {(
-                        (item.product.price -
-                          item.product.price * (item.product.discount / 100)) *
-                        item.quantity
-                      ).toFixed(2)}
-                    </td>
-                  </tr>
+                    item={item}
+                    cartItems={cartItems}
+                    setCartItems={setCartItems}
+                    disable={disable}
+                    removeItem={removeItem}
+                  />
+                  //   <tr
+                  //     className="bg-white dark:bg-slate-900 border-t border-gray-100 dark:border-gray-800"
+                  //     key={index}
+                  //   >
+                  //     <td className="p-4">
+                  //       <button
+                  //         disabled={disable}
+                  //         onClick={() => removeItem(item)}
+                  //         href=""
+                  //       >
+                  //         <i className="mdi mdi-window-close text-red-600"></i>
+                  //       </button>
+                  //     </td>
+                  //     <td className="p-4">
+                  //       <span className="flex items-center">
+                  //         <Image
+                  //           src="/images/shop/black-print-t-shirt.jpg"
+                  //           width={48}
+                  //           height={62}
+                  //           className="rounded shadow dark:shadow-gray-800 w-12"
+                  //           alt=""
+                  //         />
+                  //         <span className="ms-3">
+                  //           <span className="block font-semibold">
+                  //             {item.product.name}
+                  //           </span>
+                  //         </span>
+                  //       </span>
+                  //     </td>
+                  //     <td className="p-4 text-center">$ {item.product.price}</td>
+                  //     <td className="p-4 text-center">
+                  //       $ {item.product.discount} %
+                  //     </td>
+                  //     <td className="p-4 text-center">
+                  //       <Counter
+                  //         qtn={item.quantity ? item.quantity : 1}
+                  //         total=""
+                  //         item={item}
+                  //         setCartItems={setCartItems}
+                  //         cartItems={cartItems}
+                  //       />
+                  //     </td>
+                  //     <td className="p-4  text-end">
+                  //       ${" "}
+                  //       {(
+                  //         (item.product.price -
+                  //           item.product.price * (item.product.discount / 100)) *
+                  //         item.quantity
+                  //       ).toFixed(2)}
+                  //     </td>
+                  //   </tr>
                 );
               })}
             </tbody>
@@ -89,12 +125,13 @@ const CartTable = ({ cartItems, total, setCartItems }) => {
         <div className="grid lg:grid-cols-12 md:grid-cols-2 grid-cols-1 mt-6 gap-6">
           <div className="lg:col-span-9 md:order-1 order-3">
             <div className="space-x-1">
-              <Link
+              <button
+                disabled={disable}
                 href=""
                 className="py-2 px-5 inline-block font-semibold tracking-wide align-middle text-base text-center bg-orange-500 text-white rounded-md mt-2"
               >
                 Shop Now
-              </Link>
+              </button>
               {/* <Link
                   href=""
                   className="py-2 px-5 inline-block font-semibold tracking-wide align-middle text-base text-center rounded-md bg-orange-500/5 hover:bg-orange-500 text-orange-500 hover:text-white mt-2"

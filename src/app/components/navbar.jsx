@@ -94,24 +94,24 @@ export default function Navbar({ navClass, navlight }) {
           <Link className="logo" href="/">
             <span className="inline-block dark:hidden">
               <Image
-                src="/images/logo-dark.png"
-                width={114}
-                height={22}
+                src="/images/logo/s-logo-w.png"
+                width={200}
+                height={60.6}
                 className="l-dark"
                 alt=""
               />
               <Image
-                src="/images/logo-light.png"
-                width={114}
-                height={22}
+                src="/images/logo/s-logo-w.png"
+                width={200}
+                height={60.6}
                 className="l-light"
                 alt=""
               />
             </span>
             <Image
-              src="/images/logo-light.png"
-              width={114}
-              height={22}
+              src="/images/logo/s-logo-b.png"
+              width={200}
+              height={60.6}
               className="hidden dark:inline-block"
               alt=""
             />
@@ -119,17 +119,18 @@ export default function Navbar({ navClass, navlight }) {
         ) : (
           <Link className="logo" href="/">
             <div>
+              {/* h-[22px] */}
               <Image
-                src="/images/logo-dark.png"
-                width={114}
-                height={22}
-                className="h-[22px] inline-block dark:hidden"
+                src="/images/logo/s-logo-b.png"
+                width={200}
+                height={60.6}
+                className="inline-block dark:hidden"
                 alt=""
               />
               <Image
-                src="/images/logo-white.png"
-                width={114}
-                height={22}
+                src="/images/logo/s-logo-w.png"
+                width={200}
+                height={60.6}
                 className="h-[22px] hidden dark:inline-block"
                 alt=""
               />
