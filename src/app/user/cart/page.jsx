@@ -1,63 +1,68 @@
-"use client";
-import React, { useContext, useEffect, useState } from "react";
-import Link from "next/link";
+import React from "react";
+// import Link from "next/link";
 import MainLayout from "../../components/layout/mainLayout";
-import { MyContext } from "@/src/context";
-import axios from "axios";
-import { closeMessage } from "../../components/functions/message";
-import { Skeleton } from "@mui/material";
-import EmptyCart from "../../components/cart/emptyCart";
-import CartTable from "../../components/cart/cartTable";
+// import { MyContext } from "@/src/context";
+// import axios from "axios";
+// import { closeMessage } from "../../components/functions/message";
+// import { Skeleton } from "@mui/material";
+// import EmptyCart from "../../components/cart/emptyCart";
+// import CartTable from "../../components/cart/cartTable";
+import Cart from "../../components/cart/cart";
+
+export const metadata = {
+  title: "Cart",
+};
 
 export default function ShopCart() {
-  const {
-    user,
-    cartItems,
-    setCartItems,
-    csrfToken,
-    messageApi,
-    setCartLoading,
-    cartLoading,
-  } = useContext(MyContext);
-  const [total, setTotal] = useState(0);
-  useEffect(() => {
-    const getCartItems = async () => {
-      setCartLoading(true);
-      const { data } = await axios.post("/api/cart/getItems", {
-        csrfToken: csrfToken,
-        userId: user._id,
-      });
-      if (data.status === 200) {
-        setCartItems(data.data);
-      } else {
-        closeMessage(messageApi, data.msg, "error");
-      }
-      setCartLoading(false);
-    };
+  // const {
+  //   user,
+  //   cartItems,
+  //   setCartItems,
+  //   csrfToken,
+  //   messageApi,
+  //   setCartLoading,
+  //   cartLoading,
+  // } = useContext(MyContext);
+  // const [total, setTotal] = useState(0);
+  // useEffect(() => {
+  //   const getCartItems = async () => {
+  //     setCartLoading(true);
+  //     const { data } = await axios.post("/api/cart/getItems", {
+  //       csrfToken: csrfToken,
+  //       userId: user._id,
+  //     });
+  //     if (data.status === 200) {
+  //       setCartItems(data.data);
+  //     } else {
+  //       closeMessage(messageApi, data.msg, "error");
+  //     }
+  //     setCartLoading(false);
+  //   };
 
-    if (!cartItems && csrfToken) {
-      getCartItems();
-    }
-  }, [cartItems, csrfToken]);
+  //   if (!cartItems && csrfToken) {
+  //     getCartItems();
+  //   }
+  // }, [cartItems, csrfToken]);
 
-  useEffect(() => {
-    const calculateTotalPrice = () => {
-      if (!cartItems || !cartItems.cartItems) return 0;
-      return cartItems.cartItems.reduce((total, item) => {
-        const discountedPrice =
-          item.product.price -
-          item.product.price * (item.product.discount / 100);
-        return total + discountedPrice * item.quantity;
-      }, 0);
-    };
+  // useEffect(() => {
+  //   const calculateTotalPrice = () => {
+  //     if (!cartItems || !cartItems.cartItems) return 0;
+  //     return cartItems.cartItems.reduce((total, item) => {
+  //       const discountedPrice =
+  //         item.product.price -
+  //         item.product.price * (item.product.discount / 100);
+  //       return total + discountedPrice * item.quantity;
+  //     }, 0);
+  //   };
 
-    setTotal(calculateTotalPrice());
-  }, [cartItems]);
+  //   setTotal(calculateTotalPrice());
+  // }, [cartItems]);
 
   return (
     <>
       <MainLayout>
-        <section className="relative table w-full py-20 lg:py-24 md:pt-28 bg-gray-50 dark:bg-slate-800">
+        <Cart />
+        {/* <section className="relative table w-full py-20 lg:py-24 md:pt-28 bg-gray-50 dark:bg-slate-800">
           <div className="container relative">
             <div className="grid grid-cols-1 mt-14">
               <h3 className="text-3xl leading-normal font-semibold">Fashion</h3>
@@ -101,8 +106,7 @@ export default function ShopCart() {
             <EmptyCart />
           )}
 
-          {/* <MobileApp /> */}
-        </section>
+        </section> */}
       </MainLayout>
     </>
   );
