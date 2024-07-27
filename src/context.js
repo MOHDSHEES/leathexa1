@@ -15,6 +15,8 @@ const MyProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
   const [backDropOpen, setBackDropOpen] = useState(false);
+  const [cartItems, setCartItems] = useState(null);
+  const [cartLoading, setCartLoading] = useState(true);
 
   const [csrfToken, setCsrfToken] = useState("");
 
@@ -68,6 +70,10 @@ const MyProvider = ({ children }) => {
         setIsAdmin,
         csrfToken,
         setCsrfToken,
+        cartItems,
+        setCartItems,
+        setCartLoading,
+        cartLoading,
       }}
     >
       {contextHolder} {children}

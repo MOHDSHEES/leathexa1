@@ -5,6 +5,7 @@ const cartSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
     required: true,
+    unique: true,
   },
   cartItems: [
     {
@@ -17,6 +18,14 @@ const cartSchema = new mongoose.Schema({
         type: Number,
         required: true,
         default: 1,
+      },
+      variant: {
+        color: {
+          type: String,
+        },
+        size: {
+          type: String,
+        },
       },
     },
   ],

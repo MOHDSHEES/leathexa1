@@ -1,3 +1,7 @@
 .white .ant-spin-dot-holder {
   color: #fff; /* Change this color to your desired spin color */
 }
+
+.ant-empty-image img {
+  margin: auto;
+}
