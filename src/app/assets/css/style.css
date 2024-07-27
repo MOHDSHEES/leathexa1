@@ -5,3 +5,13 @@
 .ant-empty-image img {
   margin: auto;
 }
+.navlogo-container {
+  width: 200px;
+  height: 70px;
+}
+@media (max-width: 375px) {
+  .navlogo-container {
+    width: 120px;
+    height: 36px;
+  }
+}

@@ -118,20 +118,21 @@ export default function Navbar({ navClass, navlight }) {
           </Link>
         ) : (
           <Link className="logo" href="/">
-            <div>
+            <div className="navlogo-container">
               {/* h-[22px] */}
               <Image
                 src="/images/logo/s-logo-b.png"
                 width={200}
+                layout="responsive"
                 height={60.6}
-                className="inline-block dark:hidden"
+                className="inline-block dark:hidden "
                 alt=""
               />
               <Image
                 src="/images/logo/s-logo-w.png"
                 width={200}
                 height={60.6}
-                className=" hidden dark:inline-block"
+                className=" hidden dark:inline-block "
                 alt=""
               />
             </div>
