@@ -131,7 +131,7 @@ export default function Navbar({ navClass, navlight }) {
                 src="/images/logo/s-logo-w.png"
                 width={200}
                 height={60.6}
-                className="h-[22px] hidden dark:inline-block"
+                className=" hidden dark:inline-block"
                 alt=""
               />
             </div>
