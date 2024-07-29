@@ -78,7 +78,4 @@ Once the application is up and running, you can:
 
 For any questions or inquiries, please contact:
 
-- Your Name: [your-email@example.com](mailto:your-email@example.com)
-- GitHub: [https://github.com/your-username](https://github.com/your-username)
-
-Thank you for using the E-Commerce Website!
+- MOHAMMAD SHEES: [mohd.shees100@gmail.com](mailto:mohd.shees100@gmail.com)
