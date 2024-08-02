@@ -9,6 +9,14 @@
   width: 200px;
   height: 70px;
 }
+#topnav .navigation-menu > li {
+  margin-left: 3px;
+  margin-right: 3px;
+}
+.nav-item {
+  margin-left: 3px;
+  margin-right: 3px;
+}
 @media (max-width: 375px) {
   .navlogo-container {
     width: 120px;

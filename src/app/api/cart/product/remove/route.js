@@ -13,7 +13,7 @@ export async function POST(req) {
   if (!verifyCsrfToken(data.csrfToken)) {
     return NextResponse.json({ status: 403, msg: "Invalid CSRF token" });
   }
-  if (!session && !session.user)
+  if (!session || !session.user)
     return NextResponse.json({ status: 501, msg: "Not Authorized" });
   try {
     await dbConnect();

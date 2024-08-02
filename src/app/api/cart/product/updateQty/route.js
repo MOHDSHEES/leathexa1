@@ -8,7 +8,7 @@ export async function POST(req) {
   const session = await getServerSession(req);
   // Check if the user is authenticated
   const data = await req.json();
-  if (!session && !session.user)
+  if (!session || !session.user)
     return NextResponse.json({ status: 501, msg: "Not Authorized" });
   try {
     await dbConnect();

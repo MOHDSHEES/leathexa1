@@ -8,7 +8,7 @@ import axios from "axios";
 import CartTableRow from "./cartTableRow";
 
 const CartTable = ({ cartItems, total, setCartItems }) => {
-  const { csrfToken, messageApi, user } = useContext(MyContext);
+  const { csrfToken, messageApi, user, setUser } = useContext(MyContext);
   const [disable, setDisable] = useState(false);
   async function removeItem(item, setRemoving) {
     setRemoving(true);
@@ -22,6 +22,7 @@ const CartTable = ({ cartItems, total, setCartItems }) => {
     if (data.status === 200) {
       closeMessage(messageApi, "Successfully Removed", "success");
       setCartItems(data.data);
+      setUser({ ...user, itemsInCart: data.data.cartItems.length });
     } else {
       closeMessage(messageApi, data.msg, "error");
     }

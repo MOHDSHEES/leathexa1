@@ -1,13 +1,23 @@
 import React from "react";
 import Link from "next/link";
-import Tagline from "../components/tagline";
-import ProductDetail from "../components/product-detail";
-import ProductAboutTab from "../components/product-about-tab";
-import ProductViewTwo from "../components/product-view-two";
-import Navbar from "../components/navbar";
-import ArrivalItem from "../components/newArrival";
+import Tagline from "../../components/tagline";
+import ProductDetail from "../../components/productView/product-detail";
+import Navbar from "../../components/navbar/navbar";
+import dbConnect from "@/lib/mongoose";
+import Product from "@/models/productModel";
+import ProductImages from "../../components/productView/productImages";
+import ProductReviewTab from "../../components/productView/product-review-tab";
+import NewArrivalItem from "../../components/productView/newArrival";
+import Footer from "../../components/footer";
 
-export default function ProductDetailTwo() {
+async function getDetails(params) {
+  await dbConnect();
+  const data = await Product.findOne({ _id: params.id });
+  return JSON.parse(JSON.stringify(data));
+}
+
+export default async function ProductDetails({ params }) {
+  const product = await getDetails(params);
   return (
     <>
       <Tagline />
@@ -48,20 +58,22 @@ export default function ProductDetailTwo() {
 
       <section className="relative md:py-24 py-16">
         <div className="container relative">
-          <div className="grid md:grid-cols-2 grid-cols-1 gap-6 items-center">
+          {/* items-center */}
+          <div className="grid md:grid-cols-2 grid-cols-1 gap-6 items-start ">
             <div className="">
-              <ProductViewTwo />
+              <ProductImages images={product.images} />
             </div>
 
-            <ProductDetail />
+            <ProductDetail product={product} />
           </div>
 
-          <ProductAboutTab />
+          <ProductReviewTab />
         </div>
 
-        <ArrivalItem />
+        <NewArrivalItem />
       </section>
       {/* </MainLayout> */}
+      <Footer />
     </>
   );
 }

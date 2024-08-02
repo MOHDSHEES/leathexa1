@@ -2,11 +2,11 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-import { newProduct } from "../data/data";
+import { newProduct } from "../../data/data";
 
-import { FiHeart, FiEye, FiBookmark } from "../assets/icons/vander";
+import { FiHeart, FiEye, FiBookmark } from "../../assets/icons/vander";
 
-export default function ArrivalItem() {
+export default function NewArrivalItem() {
   return (
     <div className="container lg:mt-24 mt-16">
       <div className="grid grid-cols-1 mb-6 text-center">

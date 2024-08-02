@@ -29,7 +29,7 @@ export default function Footer(){
                                 </div>
                         
                                 <div className="lg:col-span-6 md:col-span-12">
-                                    <h5 className="tracking-[1px] text-gray-100 font-semibold">Shopping & Clothes</h5>
+                                    <h5 className="tracking-[1px] text-gray-100 font-semibold">Online Shopping </h5>
 
                                     <div className="grid md:grid-cols-12 grid-cols-1">
                                         <div className="md:col-span-4">
@@ -106,7 +106,7 @@ export default function Footer(){
                 <div className="container relative text-center">
                     <div className="grid md:grid-cols-2 items-center">
                         <div className="md:text-start text-center">
-                            <p className="mb-0">© {new Date().getFullYear()} Cartzio. Design & Develop with <i className="mdi mdi-heart text-red-600"></i> by <Link href="https://shreethemes.in/" target="_blank" className="text-reset">Shreethemes</Link>.</p>
+                            <p className="mb-0">© {new Date().getFullYear()}Design & Develop with <i className="mdi mdi-heart text-red-600"></i> by <Link href="https://shreethemes.in/" target="_blank" className="text-reset">Technboost</Link>.</p>
                         </div>
 
                         <ul className="list-none md:text-end text-center mt-6 md:mt-0 space-x-1">

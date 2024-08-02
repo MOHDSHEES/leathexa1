@@ -4,7 +4,7 @@ import Image from "next/image";
 import MobileApp from "../components/mobile-app";
 import { newProduct, salesData } from "../data/data";
 import { FiHeart, FiEye, FiBookmark } from "../assets/icons/vander";
-import Navbar from "../components/navbar";
+import Navbar from "../components/navbar/navbar";
 
 export default function Sale() {
   return (

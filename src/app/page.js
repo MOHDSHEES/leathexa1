@@ -1,7 +1,7 @@
 "use client";
 import FeaturedCollection from "./components/homePage/feature-collection";
 import HeroSlider from "./components/homePage/hero-slider";
-import Navbar from "./components/navbar";
+import Navbar from "./components/navbar/navbar";
 import Tagline from "./components/tagline";
 import Cta from "./components/homePage/cta/cta";
 import Switcher from "./components/switcher";

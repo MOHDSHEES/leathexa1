@@ -33,7 +33,7 @@ const Card = ({ item }) => {
     if (data.status === 200) {
       closeMessage(messageApi, "Item Added Successfully", "success");
       setUser({ ...user, itemsInCart: data.data.cartItems.length });
-    } else closeMessage(messageApi, data.msg, "error");
+    } else closeMessage(messageApi, data.msg);
     setAdding(false);
   }
   //   console.log(item);
@@ -88,7 +88,21 @@ const Card = ({ item }) => {
           </ul>
 
           <ul className="list-none absolute top-[10px] start-4">
-            {item.offer === true && (
+            {item.tag &&
+              item.tag.length > 0 &&
+              item.tag.slice(0, 2).map((tag) => {
+                return (
+                  <li>
+                    <Link
+                      href="#"
+                      className="bg-orange-600 text-white text-[10px] font-bold px-2.5 py-0.5 rounded h-5"
+                    >
+                      {tag}
+                    </Link>
+                  </li>
+                );
+              })}
+            {/* (
               <li>
                 <Link
                   href="#"
@@ -117,13 +131,13 @@ const Card = ({ item }) => {
                   {item.tag}
                 </Link>
               </li>
-            )}
+            )} */}
           </ul>
         </div>
 
         <div className="mt-4">
           <Link
-            href={`/product-detail-one/${item.id}`}
+            href={`/product/${item._id}`}
             className="hover:text-orange-500 text-lg font-medium"
           >
             {item.name}

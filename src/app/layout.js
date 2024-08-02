@@ -1,7 +1,8 @@
 import { DM_Sans } from "next/font/google";
 import "./assets/scss/tailwind.scss";
-import "./assets/css/materialdesignicons.css";
 import "./assets/css/style.css";
+import "./assets/css/materialdesignicons.css";
+
 import { MyProvider } from "../context";
 import SessionProviderWrapper from "./components/functions/sessionProviderWrapper";
 
