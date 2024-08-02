@@ -43,7 +43,7 @@ To set up the project locally, follow these steps:
 
    ```bash
    git clone https://github.com/your-username/ecommerce-website.git
-   cd ecommerce-website
+   cd leathexa1
    ```
 
 2. **Install dependencies**:
