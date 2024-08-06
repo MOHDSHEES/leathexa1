@@ -10,6 +10,7 @@ import ProductReviewTab from "../../components/productView/productReview/product
 import NewArrivalItem from "../../components/productView/newArrival";
 import Footer from "../../components/footer";
 import EmptyProduct from "../../components/productView/emptyProduct";
+import Loading from "../../components/productView/loadingProduct";
 
 async function getDetails(params) {
   await dbConnect();
@@ -83,17 +84,5 @@ export default async function ProductDetails({ params }) {
       {/* </MainLayout> */}
       <Footer />
     </>
-  );
-}
-function Loading() {
-  return (
-    <div className="py-20 bg-gray-50 dark:bg-slate-800">
-      <div className="container text-center">
-        <h1 className="text-4xl font-semibold mb-4">Loading...</h1>
-        <p className="text-lg mb-4">
-          Please wait while we load the product details.
-        </p>
-      </div>
-    </div>
   );
 }
