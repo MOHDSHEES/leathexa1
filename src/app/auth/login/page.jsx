@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { Spin } from "antd";
@@ -27,24 +27,29 @@ export default function Login() {
       setLoading(false);
     }
   }, [session]);
-  if (loading)
-    return (
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "100vh",
-        }}
-      >
-        <Spin tip="" size="large"></Spin>
-      </div>
-    );
+  if (loading) return <Loader />;
   if (!session || !session.user) {
     return (
-      <div>
-        <LoginComponent />
-      </div>
+      <Suspense fallback={<Loader />}>
+        <div>
+          <LoginComponent />
+        </div>
+      </Suspense>
     );
   }
+}
+
+function Loader() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100vh",
+      }}
+    >
+      <Spin tip="" size="large"></Spin>
+    </div>
+  );
 }
