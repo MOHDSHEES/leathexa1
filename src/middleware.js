@@ -13,7 +13,10 @@ export async function middleware(req) {
 
   // If the user is not authenticated and is trying to access a protected route, redirect to the sign-in page
   if (isProtected && !token) {
+    // const signInUrl = new URL("/auth/login", req.url);
+    // return NextResponse.redirect(signInUrl);
     const signInUrl = new URL("/auth/login", req.url);
+    signInUrl.searchParams.set("callbackUrl", req.nextUrl.href);
     return NextResponse.redirect(signInUrl);
   }
 

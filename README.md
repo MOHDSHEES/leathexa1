@@ -1,6 +1,6 @@
-# E-Commerce Website
+# Warehouse Management System
 
-Welcome to the E-Commerce Website project! This is a fully functional e-commerce web application built using modern technologies such as Next.js, Tailwind CSS, Cloudinary, and more.
+Welcome to the Warehouse Management System! This project is a web application designed to efficiently manage warehouse operations, built using cutting-edge technologies such as Next.js, MongoDB, Cloudinary, and more.
 
 ## Table of Contents
 
@@ -9,31 +9,32 @@ Welcome to the E-Commerce Website project! This is a fully functional e-commerce
 - [Technologies Used](#technologies-used)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Contributing](#contributing)
 - [Contact](#contact)
 
 ## Introduction
 
-The E-Commerce Website is designed to provide a seamless online shopping experience. It includes features for browsing products, adding them to a cart, checking out, and managing user accounts.
+The Warehouse Management System (WMS) is a comprehensive solution for managing inventory, tracking shipments, and overseeing warehouse operations. It provides a user-friendly interface for warehouse staff to handle various tasks efficiently, reducing errors and increasing productivity.
 
 ## Features
 
 - **User Authentication**: Secure login and registration using JWT.
-- **Product Catalog**: Browse and search for products.
-- **Shopping Cart**: Add, update, and remove items from the cart.
-- **Order Management**: Place and track orders.
+- **Inventory Management**: Add, update, and delete inventory items.
+- **Order Tracking**: Track the status of orders from placement to delivery.
 - **Image Uploads**: Upload and manage product images with Cloudinary.
 - **Responsive Design**: Fully responsive design for mobile, tablet, and desktop.
+- **Real-time Updates**: Real-time inventory updates using WebSockets.
 
 ## Technologies Used
 
 - **Next.js**: React framework for server-rendered applications.
-- **Tailwind CSS**: Utility-first CSS framework for styling.
+- **MongoDB**: NoSQL database for storing inventory and order data.
+- **Mongoose**: ODM for MongoDB, providing schema-based solutions.
 - **Cloudinary**: Cloud-based image and video management.
 - **Node.js**: JavaScript runtime for server-side development.
 - **Express.js**: Web application framework for Node.js.
 - **JWT**: JSON Web Tokens for secure authentication.
-- **MongoDB**: NoSQL database for storing product and order data.
-- **Mongoose**: ODM for MongoDB, providing schema-based solutions.
+- **Tailwind CSS**: Utility-first CSS framework for styling.
 
 ## Installation
 
@@ -42,8 +43,8 @@ To set up the project locally, follow these steps:
 1. **Clone the repository**:
 
    ```bash
-   git clone https://github.com/your-username/ecommerce-website.git
-   cd leathexa1
+   git clone https://github.com/your-username/warehouse-management-system.git
+   cd warehouse-management-system
    ```
 
 2. **Install dependencies**:
@@ -71,11 +72,30 @@ To set up the project locally, follow these steps:
 
 Once the application is up and running, you can:
 
-- **Register and log in** to your account.
-- **Browse products** and view detailed descriptions.
-- **Add products** to your shopping cart.
-- **Proceed to checkout** and place your order.
-- **Track your orders** and view order history.
+- **Register and log in** to the system.
+- **Add new inventory items** and upload images.
+- **Update existing items** with new information.
+- **Delete items** that are no longer needed.
+- **Track orders** and update their status.
+
+## Contributing
+
+We welcome contributions to enhance the functionality and improve the codebase. To contribute, please:
+
+1. Fork the repository.
+2. Create a new branch:
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+3. Make your changes and commit them:
+   ```bash
+   git commit -m 'Add some feature'
+   ```
+4. Push to the branch:
+   ```bash
+   git push origin feature/your-feature-name
+   ```
+5. Open a pull request.
 
 ## Contact
 

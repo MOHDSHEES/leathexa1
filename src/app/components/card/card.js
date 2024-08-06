@@ -11,6 +11,10 @@ import { Spin } from "antd";
 const Card = ({ item }) => {
   const { user, csrfToken, messageApi, setUser } = useContext(MyContext);
   const [adding, setAdding] = useState(false);
+  const imageUrl =
+    item.images && item.images[0]
+      ? item.images[0]
+      : "/images/shop/black-print-t-shirt.jpg";
   // console.log(user);
   async function addToCart() {
     if (!user) {
@@ -42,7 +46,7 @@ const Card = ({ item }) => {
       <div className="group">
         <div className="relative overflow-hidden shadow dark:shadow-gray-800 group-hover:shadow-lg group-hover:dark:shadow-gray-800 rounded-md duration-500">
           <Image
-            src="/images/shop/black-print-t-shirt.jpg"
+            src={imageUrl}
             width={0}
             height={0}
             sizes="100vw"
@@ -88,11 +92,11 @@ const Card = ({ item }) => {
           </ul>
 
           <ul className="list-none absolute top-[10px] start-4">
-            {item.tag &&
-              item.tag.length > 0 &&
-              item.tag.slice(0, 2).map((tag) => {
+            {item.tags &&
+              item.tags.length > 0 &&
+              item.tags.slice(0, 2).map((tag) => {
                 return (
-                  <li>
+                  <li key={tag}>
                     <Link
                       href="#"
                       className="bg-orange-600 text-white text-[10px] font-bold px-2.5 py-0.5 rounded h-5"
@@ -151,7 +155,7 @@ const Card = ({ item }) => {
             <Rating
               name="half-rating-read"
               defaultValue={item.ratings}
-              precision={0.2}
+              precision={0.5}
               size="small"
               readOnly
             />

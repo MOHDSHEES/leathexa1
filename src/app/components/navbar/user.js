@@ -8,8 +8,10 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import LoginIcon from "@mui/icons-material/Login";
 import LogoutIcon from "@mui/icons-material/Logout";
 import PersonIcon from "@mui/icons-material/Person";
+import { usePathname } from "next/navigation";
 
 const User = ({ userMenu, setUserMenu }) => {
+  const pathname = usePathname();
   const { user, setBackDropOpen, loading } = useContext(MyContext);
   const logout = () => {
     setBackDropOpen(true);
@@ -91,7 +93,7 @@ const User = ({ userMenu, setUserMenu }) => {
 
               <li className="ms-0">
                 <Link
-                  href="/auth/login"
+                  href={`/auth/login?callbackUrl=${pathname}`}
                   onClick={handleLinkClick}
                   className="flex items-center font-medium py-2 px-4 dark:text-white/70 hover:text-orange-500 dark:hover:text-white"
                 >

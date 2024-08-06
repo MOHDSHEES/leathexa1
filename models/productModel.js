@@ -60,13 +60,13 @@ const productSchema = new mongoose.Schema({
   weight: {
     type: Number,
   },
-  images: [
-    {
-      url: String,
-    },
-  ],
+  images: [],
   tags: [],
   ratings: {
+    type: Number,
+    default: 0,
+  },
+  numRatings: {
     type: Number,
     default: 0,
   },
@@ -77,6 +77,10 @@ const productSchema = new mongoose.Schema({
   variants: [variantSchema],
   vendor: {
     type: String,
+  },
+  gender: {
+    type: String, //i.e for male or female
+    required: true,
   },
   //   category: {
   //     type: String,
@@ -110,6 +114,13 @@ const productSchema = new mongoose.Schema({
     required: true,
   },
 });
+
+productSchema.index({ name: "text", description: "text", tags: "text" });
+productSchema.index({ category: 1 });
+productSchema.index({ gender: 1 });
+productSchema.index({ createdAt: -1 });
+productSchema.index({ "variants.sizes.size": 1 });
+productSchema.index({ "variants.color": 1 });
 
 const Product =
   mongoose.models.Product || mongoose.model("Product", productSchema);

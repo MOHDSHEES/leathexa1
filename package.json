@@ -32,6 +32,7 @@
     "react-responsive-carousel": "^3.2.23",
     "react-scroll": "^1.9.0",
     "sass": "^1.72.0",
+    "swiper": "^11.1.9",
     "tiny-slider-react": "^0.5.7"
   },
   "devDependencies": {

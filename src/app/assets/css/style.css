@@ -17,6 +17,9 @@
   margin-left: 3px;
   margin-right: 3px;
 }
+.custom-swiper .swiper-wrapper {
+  margin-bottom: 60px; /* Adjust the margin value as needed */
+}
 @media (max-width: 375px) {
   .navlogo-container {
     width: 120px;

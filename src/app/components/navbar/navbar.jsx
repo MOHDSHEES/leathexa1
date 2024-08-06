@@ -1,18 +1,7 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import Image from "next/image";
-
-import {
-  FiSearch,
-  FiShoppingCart,
-  FiHeart,
-  FiDollarSign,
-  FiUser,
-  FiHelpCircle,
-  FiSettings,
-  FiLogOut,
-} from "../../assets/icons/vander";
+import { FiHeart } from "../../assets/icons/vander";
 import Cart from "./cart";
 import User from "./user";
 import NavbarLogo from "./navbarLogo";
@@ -142,14 +131,14 @@ export default function Navbar({ navClass, navlight }) {
           >
             <li
               // style={{ marginLeft: "3px", marginRight: "3px" }}
-              className={`${menu === "/sale" ? "active" : ""}`}
+              className={`${menu === "/products/mens" ? "active" : ""}`}
             >
-              <Link href="/sale" className="sub-menu-item">
+              <Link href="/products/mens" className="sub-menu-item">
                 Mens
               </Link>
             </li>
-            <li className={`${menu === "/sale" ? "active" : ""}`}>
-              <Link href="/sale" className="sub-menu-item">
+            <li className={`${menu === "/products/womens" ? "active" : ""}`}>
+              <Link href="/products/womens" className="sub-menu-item">
                 Womens
               </Link>
             </li>

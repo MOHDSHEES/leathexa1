@@ -41,6 +41,9 @@ const CartTable = ({ cartItems, total, setCartItems }) => {
                 <th scope="col" className="text-start p-4 min-w-[220px]">
                   Product
                 </th>
+                <th scope="col" className="text-start p-4 min-w-[220px]">
+                  Variant
+                </th>
                 <th scope="col" className="p-4 w-24 min-w-[100px]">
                   Price
                 </th>

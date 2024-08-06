@@ -20,10 +20,9 @@ export default function Home() {
       <HeroSlider />
       <section className="relative md:py-24 py-16">
         <FeaturedCollection />
-
         <NewArrival />
         <Cta />
-        {/* <BestSeller /> */}
+        <BestSeller />
         <CtaOne />
         <Client />
       </section>

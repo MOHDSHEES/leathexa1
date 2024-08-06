@@ -1,20 +1,27 @@
 "use client";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Link from "next/link";
 import { Rating } from "@mui/material";
+import { closeMessage, openMessage } from "../functions/message";
+import { MyContext } from "@/src/context";
+import axios from "axios";
 
 export default function ProductDetail({ product }) {
-  const [selectedColor, setSelectedColor] = useState(null);
-  const [selectedSize, setSelectedSize] = useState(null);
+  const [selectedColor, setSelectedColor] = useState(product.variants[0].color);
+  const [selectedSize, setSelectedSize] = useState(
+    product.variants[0].sizes[0].size
+  );
   const [sizes, setSizes] = useState(product.variants[0].sizes);
+  const [adding, setAdding] = useState(false);
   //   console.log(product);
-  let [count, setCount] = useState(0);
+  const { messageApi, csrfToken, user, setUser } = useContext(MyContext);
+  let [count, setCount] = useState(1);
 
   const increments = () => {
     setCount(count + 1);
   };
   const decrements = () => {
-    if (count > 0) {
+    if (count > 1) {
       setCount(count - 1);
     }
   };
@@ -23,6 +30,32 @@ export default function ProductDetail({ product }) {
     setSelectedColor(variant.color);
     setSizes(variant.sizes ? variant.sizes : null);
   };
+
+  async function addToCart() {
+    if (!user) {
+      closeMessage(messageApi, "Login to Add Product.", "error");
+      return;
+    }
+    setAdding(true);
+    openMessage(messageApi, "Adding To Cart...");
+    const { data } = await axios.post("/api/cart/product/add", {
+      userId: user._id,
+      csrfToken: csrfToken,
+      details: {
+        product: product._id,
+        quantity: count,
+        variant: {
+          color: selectedColor,
+          size: selectedSize,
+        },
+      },
+    });
+    if (data.status === 200) {
+      closeMessage(messageApi, "Item Added Successfully", "success");
+      setUser({ ...user, itemsInCart: data.data.cartItems.length });
+    } else closeMessage(messageApi, data.msg);
+    setAdding(false);
+  }
 
   return (
     <div className="sticky top-20">
@@ -102,7 +135,7 @@ export default function ProductDetail({ product }) {
               return (
                 <button
                   key={idx}
-                  href=""
+                  //   href=""
                   onClick={() => setVariant(variant)}
                   style={{ background: variant.color }}
                   className={`size-6 rounded-full ring-2 ring-gray-200 dark:ring-slate-800  inline-flex align-middle ${
@@ -147,7 +180,7 @@ export default function ProductDetail({ product }) {
               -
             </button>
             <input
-              min="0"
+              min="1"
               name="quantity"
               value={count}
               onChange={() => {}}
@@ -171,12 +204,13 @@ export default function ProductDetail({ product }) {
         >
           Shop Now
         </Link>
-        <Link
-          href=""
+        <button
+          onClick={addToCart}
+          disabled={adding}
           className="py-2 px-5 inline-block font-semibold tracking-wide align-middle text-base text-center rounded-md bg-orange-500/5 hover:bg-orange-500 text-orange-500 hover:text-white mt-2"
         >
           Add to Cart
-        </Link>
+        </button>
       </div>
     </div>
   );

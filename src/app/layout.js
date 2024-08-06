@@ -1,4 +1,6 @@
 import { DM_Sans } from "next/font/google";
+import "swiper/css";
+import "swiper/css/pagination";
 import "./assets/scss/tailwind.scss";
 import "./assets/css/style.css";
 import "./assets/css/materialdesignicons.css";

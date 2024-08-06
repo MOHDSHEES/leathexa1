@@ -1,13 +1,16 @@
+"use client";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-// import { newProduct } from "../../data/data";
-// import Image from "next/image";
-// import { FiHeart, FiEye, FiBookmark } from "../../assets/icons/vander";
 import axios from "axios";
 import Card from "../card/card";
 
+import { Pagination } from "swiper/modules";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+
 const BestSeller = () => {
   const [data, setData] = useState(null);
+  //   console.log(data);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     setLoading(true);
@@ -38,14 +41,44 @@ const BestSeller = () => {
           </Link>
         </div>
       </div>
+      {
+        loading ? (
+          "Loading..."
+        ) : (
+          <div className="custom-swiper">
+            <Swiper
+              // install Swiper modules
+              modules={[Pagination]}
+              spaceBetween={30}
+              slidesPerView={4.2}
+              // navigation
+              pagination={{ clickable: true }}
+              //   onSwiper={(swiper) => console.log(swiper)}
+              //   onSlideChange={() => console.log("slide change")}
+            >
+              {data &&
+                data.map((item, index) => {
+                  return (
+                    <SwiperSlide key={index}>
+                      <Card item={item} />
+                    </SwiperSlide>
+                  );
+                })}
+              {/* <div
+                className="swiper-pagination absolute w-full"
+                style={{ bottom: "-20px" }}
+              ></div> */}
+            </Swiper>
+          </div>
+        )
 
-      <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 pt-6 gap-6">
-        {loading
-          ? "Loading..."
-          : data.map((item, index) => {
-              return <Card key={index} item={item} />;
-            })}
-      </div>
+        //   data.map((item, index) => {
+        //       return <Card key={index} item={item} />;
+        //     })
+      }
+      {/* <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 pt-6 gap-6">
+       
+      </div> */}
       <div className="grid grid-cols-1 mt-6">
         <div className="text-center md:hidden block">
           <Link

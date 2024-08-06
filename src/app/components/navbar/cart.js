@@ -160,7 +160,7 @@ const Cart = ({ cartMenu, setCartMenu }) => {
                   return (
                     <li className="ms-0" key={idx}>
                       <Link
-                        href="#"
+                        href={`/product/${item.product._id}`}
                         className="flex items-center justify-between py-1.5 px-4"
                       >
                         <span className="flex items-center">
