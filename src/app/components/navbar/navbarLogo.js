@@ -38,7 +38,6 @@ const NavbarLogo = ({ navlight }) => {
             <Image
               src="/images/logo/lx-logo-black.png"
               width={200}
-              // layout="responsive"
               height={60.6}
               className="inline-block dark:hidden "
               alt=""
