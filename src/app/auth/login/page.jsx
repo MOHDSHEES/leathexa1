@@ -6,37 +6,43 @@ import { Spin } from "antd";
 import LoginComponent from "../../components/authComponents/LoginComponent";
 import { useSearchParams } from "next/navigation";
 
-export default function Login() {
+export default function LoginWrapper() {
+  return (
+    <Suspense fallback={<Loader />}>
+      <Login />
+    </Suspense>
+  );
+}
+
+function Login() {
   const router = useRouter();
   const { data: session, status } = useSession();
   const [loading, setLoading] = useState(true);
   const searchParams = useSearchParams();
 
   const callBackUrl = searchParams.get("callbackUrl");
-  // if (session) {
-  //   router.replace("/");
-  // }
+
   useEffect(() => {
     if (session && session.user) {
       setLoading(true);
       const url = callBackUrl ? callBackUrl : "/";
-      router.replace(url, undefined, {
-        onComplete: () => setLoading(false),
-      });
+      router.replace(url).finally(() => setLoading(false));
     } else if (status === "unauthenticated") {
       setLoading(false);
     }
-  }, [session]);
+  }, [session, status, router, callBackUrl]);
+
   if (loading) return <Loader />;
+
   if (!session || !session.user) {
     return (
-      <Suspense fallback={<Loader />}>
-        <div>
-          <LoginComponent />
-        </div>
-      </Suspense>
+      <div>
+        <LoginComponent />
+      </div>
     );
   }
+
+  return null; // If user is authenticated, return null
 }
 
 function Loader() {
