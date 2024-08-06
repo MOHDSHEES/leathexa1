@@ -9,14 +9,14 @@ const NavbarLogo = ({ navlight }) => {
         <Link className="logo" href="/">
           <span className="inline-block dark:hidden">
             <Image
-              src="/images/logo/lx-logo-white.png"
+              src="/images/logo/s-logo-white.png"
               width={200}
               height={60.6}
               className="l-dark"
               alt=""
             />
             <Image
-              src="/images/logo/lx-logo-white.png"
+              src="/images/logo/s-logo-white.png"
               width={200}
               height={60.6}
               className="l-light"
@@ -24,7 +24,7 @@ const NavbarLogo = ({ navlight }) => {
             />
           </span>
           <Image
-            src="/images/logo/lx-logo-black.png"
+            src="/images/logo/s-logo-black.png"
             width={200}
             height={60.6}
             className="hidden dark:inline-block"
@@ -36,14 +36,14 @@ const NavbarLogo = ({ navlight }) => {
           <div className="navlogo-container">
             {/* h-[22px] */}
             <Image
-              src="/images/logo/lx-logo-black.png"
+              src="/images/logo/s-logo-black.png"
               width={200}
               height={60.6}
               className="inline-block dark:hidden "
               alt=""
             />
             <Image
-              src="/images/logo/lx-logo-white.png"
+              src="/images/logo/s-logo-white.png"
               width={200}
               height={60.6}
               className=" hidden dark:inline-block "
