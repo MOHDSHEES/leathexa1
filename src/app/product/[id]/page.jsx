@@ -1,30 +1,31 @@
 import React, { Suspense } from "react";
 import Link from "next/link";
 import Tagline from "../../components/tagline";
-import ProductDetail from "../../components/productView/product-detail";
+// import ProductDetail from "../../components/productView/product-detail";
 import Navbar from "../../components/navbar/navbar";
-import dbConnect from "@/lib/mongoose";
-import Product from "@/models/productModel";
-import ProductImages from "../../components/productView/productImages";
-import ProductReviewTab from "../../components/productView/productReview/product-review-tab";
-import NewArrivalItem from "../../components/productView/newArrival";
+// import dbConnect from "@/lib/mongoose";
+// import Product from "@/models/productModel";
+// import ProductImages from "../../components/productView/productImages";
+// import ProductReviewTab from "../../components/productView/productReview/product-review-tab";
+// import NewArrivalItem from "../../components/productView/newArrival";
 import Footer from "../../components/footer";
-import EmptyProduct from "../../components/productView/emptyProduct";
+// import EmptyProduct from "../../components/productView/emptyProduct";
 import Loading from "../../components/productView/loadingProduct";
+import ProductView from "../../components/productView/product";
 
-async function getDetails(params) {
-  await dbConnect();
-  try {
-    const data = await Product.findOne({ _id: params.id });
-    return JSON.parse(JSON.stringify(data));
-  } catch (error) {
-    return null;
-  }
-}
+// async function getDetails(params) {
+//   await dbConnect();
+//   try {
+//     const data = await Product.findOne({ _id: params.id });
+//     return JSON.parse(JSON.stringify(data));
+//   } catch (error) {
+//     return null;
+//   }
+// }
 
 export default async function ProductDetails({ params }) {
-  const product = await getDetails(params);
-  if (!product) return <EmptyProduct />;
+  // const product = await getDetails(params);
+  // if (!product) return <EmptyProduct />;
   return (
     <>
       <Tagline />
@@ -64,9 +65,10 @@ export default async function ProductDetails({ params }) {
         </div>
       </section>
       <Suspense fallback={<Loading />}>
-        <section className="relative md:py-24 py-16">
+        <ProductView params={params} />
+        {/* <section className="relative md:py-24 py-16">
           <div className="container relative">
-            {/* items-center */}
+          
             <div className="grid md:grid-cols-2 grid-cols-1 gap-6 items-start ">
               <div className="">
                 <ProductImages images={product.images} />
@@ -79,7 +81,7 @@ export default async function ProductDetails({ params }) {
           </div>
 
           <NewArrivalItem />
-        </section>
+        </section> */}
       </Suspense>
       {/* </MainLayout> */}
       <Footer />
