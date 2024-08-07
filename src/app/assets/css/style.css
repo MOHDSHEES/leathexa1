@@ -20,6 +20,11 @@
 .custom-swiper .swiper-wrapper {
   margin-bottom: 60px; /* Adjust the margin value as needed */
 }
+.homepage-swiper-pagination .swiper-pagination-bullet {
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 1px 1px 2px #000000e6;
+}
 @media (max-width: 375px) {
   .navlogo-container {
     width: 120px;

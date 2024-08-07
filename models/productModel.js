@@ -22,11 +22,7 @@ const variantSchema = new mongoose.Schema({
       },
     },
   ],
-  images: [
-    {
-      url: String,
-    },
-  ],
+  images: [],
 });
 
 const productSchema = new mongoose.Schema({

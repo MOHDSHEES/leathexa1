@@ -40,7 +40,7 @@ const SignUpComponent = () => {
   }
   const Inputchange = (event) => {
     const { name, value } = event.target;
-    if (name === email)
+    if (name === "email")
       setstate({
         ...state,
         [name]: DOMPurify.sanitize(value.toLowerCase().trim()),

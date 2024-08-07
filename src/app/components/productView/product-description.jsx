@@ -6,8 +6,13 @@ import { closeMessage, openMessage } from "../functions/message";
 import { MyContext } from "@/src/context";
 import axios from "axios";
 
-export default function ProductDetail({ product }) {
-  const [selectedColor, setSelectedColor] = useState(product.variants[0].color);
+export default function ProductDescription({
+  product,
+  selectedColor,
+  setSelectedColor,
+  setSelectedVariantIdx,
+}) {
+  // const [selectedColor, setSelectedColor] = useState(product.variants[0].color);
   const [selectedSize, setSelectedSize] = useState(
     product.variants[0].sizes[0].size
   );
@@ -26,7 +31,8 @@ export default function ProductDetail({ product }) {
     }
   };
 
-  const setVariant = (variant) => {
+  const setVariant = (variant, idx) => {
+    setSelectedVariantIdx(idx);
     setSelectedColor(variant.color);
     setSizes(variant.sizes ? variant.sizes : null);
   };
@@ -136,7 +142,7 @@ export default function ProductDetail({ product }) {
                 <button
                   key={idx}
                   //   href=""
-                  onClick={() => setVariant(variant)}
+                  onClick={() => setVariant(variant, idx)}
                   style={{ background: variant.color }}
                   className={`size-6 rounded-full ring-2 ring-gray-200 dark:ring-slate-800  inline-flex align-middle ${
                     ((!selectedColor && idx === 0) ||

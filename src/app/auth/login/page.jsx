@@ -26,11 +26,14 @@ function Login() {
     if (session && session.user) {
       setLoading(true);
       const url = callBackUrl ? callBackUrl : "/";
-      router.replace(url).finally(() => setLoading(false));
+      router.replace(url, undefined, {
+        onComplete: () => setLoading(false),
+      });
+      // router.replace(url).finally(() => setLoading(false));
     } else if (status === "unauthenticated") {
       setLoading(false);
     }
-  }, [session, status, router, callBackUrl]);
+  }, [session]);
 
   if (loading) return <Loader />;
 

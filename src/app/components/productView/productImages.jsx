@@ -2,6 +2,9 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { Autoplay, Pagination } from "swiper/modules";
+
+import { Swiper, SwiperSlide } from "swiper/react";
 
 export default function ProductImages({ images }) {
   let [activeImage, setActiveImage] = useState(0);
@@ -11,7 +14,7 @@ export default function ProductImages({ images }) {
   };
   return (
     <ul className="product-imgs flex list-none">
-      <li className="w-1/6">
+      {/* <li className="w-1/6">
         <ul className="img-select list-none">
           {images.map((item, index) => {
             return (
@@ -32,11 +35,47 @@ export default function ProductImages({ images }) {
             );
           })}
         </ul>
-      </li>
-
-      <li className="img-display shadow dark:shadow-gray-800 m-px w-5/6">
+      </li> */}
+      {/* w-5/6 */}
+      <li className="img-display shadow dark:shadow-gray-800 m-px ">
         <div className="img-showcase flex w-full duration-500">
-          <Image
+          <Swiper
+            // install Swiper modules
+            modules={[Autoplay, Pagination]}
+            speed={1000}
+            spaceBetween={30}
+            slidesPerView={1}
+            // navigation
+            pagination={{ clickable: true }}
+            autoplay={{
+              delay: 2500,
+              disableOnInteraction: false,
+              pauseOnMouseEnter: true,
+            }}
+          >
+            {images.map((item, index) => {
+              return (
+                // <Link href="#" key={index} scroll={false}>
+                <SwiperSlide key={index}>
+                  <div className="flex justify-center items-center h-screen">
+                    <Image
+                      src={item}
+                      width={0}
+                      height={0}
+                      sizes="100vw"
+                      style={{ width: "100%", height: "auto" }}
+                      className="min-w-full"
+                      alt=""
+                      onClick={() => imageShow(index)}
+                    />
+                  </div>
+                </SwiperSlide>
+                // </Link>
+              );
+            })}
+          </Swiper>
+
+          {/* <Image
             src={images[activeImage]}
             width={0}
             height={0}
@@ -44,62 +83,7 @@ export default function ProductImages({ images }) {
             style={{ width: "100%", height: "auto" }}
             className="min-w-full"
             alt=""
-          />
-          {/* {activeImage === 1 && (
-            <Image
-              src="/images/shop/mens-jecket.jpg"
-              width={0}
-              height={0}
-              sizes="100vw"
-              style={{ width: "100%", height: "auto" }}
-              className="min-w-full"
-              alt=""
-            />
-          )} */}
-          {/* {activeImage === 2 && (
-            <Image
-              src="/images/shop/mens-jecket-3.jpg"
-              width={0}
-              height={0}
-              sizes="100vw"
-              style={{ width: "100%", height: "auto" }}
-              className="min-w-full"
-              alt=""
-            />
-          )} */}
-          {/* {activeImage === 3 && (
-            <Image
-              src="/images/shop/mens-jecket-left.jpg"
-              width={0}
-              height={0}
-              sizes="100vw"
-              style={{ width: "100%", height: "auto" }}
-              className="min-w-full"
-              alt=""
-            />
-          )} */}
-          {/* {activeImage === 4 && (
-            <Image
-              src="/images/shop/mens-jecket-back.jpg"
-              width={0}
-              height={0}
-              sizes="100vw"
-              style={{ width: "100%", height: "auto" }}
-              className="min-w-full"
-              alt=""
-            />
-          )} */}
-          {/* {activeImage === 5 && (
-            <Image
-              src="/images/shop/mens-jecket-4.jpg"
-              width={0}
-              height={0}
-              sizes="100vw"
-              style={{ width: "100%", height: "auto" }}
-              className="min-w-full"
-              alt=""
-            />
-          )} */}
+          /> */}
         </div>
       </li>
     </ul>
