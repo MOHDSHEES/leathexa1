@@ -47,11 +47,11 @@ export default function ProductImages({ images }) {
             slidesPerView={1}
             // navigation
             pagination={{ clickable: true }}
-            // autoplay={{
-            //   delay: 2500,
-            //   disableOnInteraction: false,
-            //   pauseOnMouseEnter: true,
-            // }}
+            autoplay={{
+              delay: 2500,
+              disableOnInteraction: false,
+              pauseOnMouseEnter: true,
+            }}
           >
             {images.map((item, index) => {
               return (
