@@ -47,17 +47,20 @@ export default function ProductImages({ images }) {
             slidesPerView={1}
             // navigation
             pagination={{ clickable: true }}
-            autoplay={{
-              delay: 2500,
-              disableOnInteraction: false,
-              pauseOnMouseEnter: true,
-            }}
+            // autoplay={{
+            //   delay: 2500,
+            //   disableOnInteraction: false,
+            //   pauseOnMouseEnter: true,
+            // }}
           >
             {images.map((item, index) => {
               return (
                 // <Link href="#" key={index} scroll={false}>
                 <SwiperSlide key={index}>
-                  <div className="flex justify-center items-center h-screen">
+                  <div
+                    className="flex justify-center items-center"
+                    style={{ height: "100%" }}
+                  >
                     <Image
                       src={item}
                       width={0}
