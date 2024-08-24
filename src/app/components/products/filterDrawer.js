@@ -43,7 +43,7 @@ export default function FilterDrawer({
     if (filter.size.length > 0) {
       queryParams.size = filter.size.join(",");
     }
-    queryParams.page = page;
+    queryParams.page = 1;
     const queryParam = new URLSearchParams(queryParams).toString();
     // Update the URL without refreshing the page
     window.history.replaceState(
