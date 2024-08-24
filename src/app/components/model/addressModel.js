@@ -122,109 +122,111 @@ export default function AddressModel({
         }}
       >
         <fieldset disabled={disabled}>
-          <DialogTitle>{name} Address</DialogTitle>
-          <DialogContent>
-            {/* <DialogContentText>
+          <div className="dark:bg-gray-100">
+            <DialogTitle>{name} Address</DialogTitle>
+            <DialogContent>
+              {/* <DialogContentText>
             To subscribe to this website, please enter your email address here.
             We will send updates occasionally.
           </DialogContentText> */}
-            <Grid container spacing={2}>
-              <Grid xs={12} md={12}>
-                <TextField
-                  autoFocus
-                  required
-                  margin="dense"
-                  id="address"
-                  name="address"
-                  label="Address"
-                  onChange={Inputchange}
-                  value={state.address}
-                  type="text"
-                  fullWidth
-                  variant="outlined"
-                />
-              </Grid>
-              <Grid xs={12} md={4}>
-                <TextField
-                  sx={{ margin: 0 }}
-                  required
-                  margin="dense"
-                  id="city"
-                  name="city"
-                  label="City"
-                  onChange={Inputchange}
-                  value={state.city}
-                  type="text"
-                  fullWidth
-                  variant="outlined"
-                />
-              </Grid>
-              <Grid xs={12} md={4}>
-                <FormControl fullWidth>
-                  <InputLabel id="country-select">Country</InputLabel>
-                  <Select
-                    labelId="country-select"
-                    id="countrySelect"
-                    name="country"
+              <Grid container spacing={2}>
+                <Grid xs={12} md={12}>
+                  <TextField
+                    autoFocus
+                    required
+                    margin="dense"
+                    id="address"
+                    name="address"
+                    label="Address"
                     onChange={Inputchange}
-                    value={state.country}
-                    // value={age}
-                    label="Country"
-                    // onChange={handleChange}
-                  >
-                    <MenuItem value="India">India</MenuItem>
-                  </Select>
-                </FormControl>
+                    value={state.address}
+                    type="text"
+                    fullWidth
+                    variant="outlined"
+                  />
+                </Grid>
+                <Grid xs={12} md={4}>
+                  <TextField
+                    sx={{ margin: 0 }}
+                    required
+                    margin="dense"
+                    id="city"
+                    name="city"
+                    label="City"
+                    onChange={Inputchange}
+                    value={state.city}
+                    type="text"
+                    fullWidth
+                    variant="outlined"
+                  />
+                </Grid>
+                <Grid xs={12} md={4}>
+                  <FormControl fullWidth>
+                    <InputLabel id="country-select">Country</InputLabel>
+                    <Select
+                      labelId="country-select"
+                      id="countrySelect"
+                      name="country"
+                      onChange={Inputchange}
+                      value={state.country}
+                      // value={age}
+                      label="Country"
+                      // onChange={handleChange}
+                    >
+                      <MenuItem value="India">India</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Grid>
+                <Grid xs={12} md={4}>
+                  <TextField
+                    required
+                    margin="dense"
+                    sx={{ margin: 0 }}
+                    id="postCode"
+                    name="postCode"
+                    label="PostCode"
+                    onChange={Inputchange}
+                    value={state.postCode}
+                    type="text"
+                    fullWidth
+                    variant="outlined"
+                  />
+                </Grid>
+                <Grid xs={12} md={4}>
+                  <TextField
+                    required
+                    margin="dense"
+                    sx={{ margin: 0 }}
+                    id="mobileNo"
+                    name="mobileNo"
+                    label="Mobile No."
+                    onChange={Inputchange}
+                    value={state.mobileNo}
+                    type="text"
+                    fullWidth
+                    variant="outlined"
+                  />
+                </Grid>
               </Grid>
-              <Grid xs={12} md={4}>
-                <TextField
-                  required
-                  margin="dense"
-                  sx={{ margin: 0 }}
-                  id="postCode"
-                  name="postCode"
-                  label="PostCode"
-                  onChange={Inputchange}
-                  value={state.postCode}
-                  type="text"
-                  fullWidth
-                  variant="outlined"
-                />
-              </Grid>
-              <Grid xs={12} md={4}>
-                <TextField
-                  required
-                  margin="dense"
-                  sx={{ margin: 0 }}
-                  id="mobileNo"
-                  name="mobileNo"
-                  label="Mobile No."
-                  onChange={Inputchange}
-                  value={state.mobileNo}
-                  type="text"
-                  fullWidth
-                  variant="outlined"
-                />
-              </Grid>
-            </Grid>
-            {!newAddress && (
-              <FormGroup>
-                <FormControlLabel
-                  sx={{ mt: 1 }}
-                  control={
-                    <Checkbox checked={checked} onChange={handleCheckBox} />
-                  }
-                  label="Check if you want to use the same address for both shipping and billing."
-                />
-              </FormGroup>
-            )}
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleClose}>Cancel</Button>
-            <Button disabled={disabled} type="submit">
-              Save
-            </Button>
-          </DialogActions>
+              {!newAddress && (
+                <FormGroup>
+                  <FormControlLabel
+                    sx={{ mt: 1 }}
+                    control={
+                      <Checkbox checked={checked} onChange={handleCheckBox} />
+                    }
+                    label="Check if you want to use the same address for both shipping and billing."
+                  />
+                </FormGroup>
+              )}
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleClose}>Cancel</Button>
+              <Button disabled={disabled} type="submit">
+                Save
+              </Button>
+            </DialogActions>
+          </div>
         </fieldset>
       </Dialog>
     </React.Fragment>

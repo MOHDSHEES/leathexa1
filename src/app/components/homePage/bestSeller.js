@@ -7,6 +7,7 @@ import Card from "../card/card";
 import { Pagination } from "swiper/modules";
 
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Skeleton, Stack } from "@mui/material";
 
 const BestSeller = () => {
   const [data, setData] = useState(null);
@@ -41,66 +42,62 @@ const BestSeller = () => {
           </Link>
         </div>
       </div>
-      {
-        loading ? (
-          "Loading..."
-        ) : (
-          <div className="custom-swiper">
-            <Swiper
-              // install Swiper modules
-              modules={[Pagination]}
-              spaceBetween={30}
-              slidesPerView={4.2}
-              // navigation
-              pagination={{ clickable: true }}
-              breakpoints={{
-                // when window width is >= 320px
-                320: {
-                  slidesPerView: 1,
-                  spaceBetween: 20,
-                },
-                // when window width is >= 640px
-                640: {
-                  slidesPerView: 2,
-                  spaceBetween: 20,
-                },
-                // when window width is >= 768px
-                768: {
-                  slidesPerView: 3,
-                  spaceBetween: 30,
-                },
-                // when window width is >= 1024px
-                1024: {
-                  slidesPerView: 4,
-                  spaceBetween: 30,
-                },
-              }}
-              //   onSwiper={(swiper) => console.log(swiper)}
-              //   onSlideChange={() => console.log("slide change")}
-            >
-              {data &&
-                data.map((item, index) => {
-                  return (
-                    <SwiperSlide key={index}>
-                      <Card item={item} />
-                    </SwiperSlide>
-                  );
-                })}
-              {/* <div
-                className="swiper-pagination absolute w-full"
-                style={{ bottom: "-20px" }}
-              ></div> */}
-            </Swiper>
-          </div>
-        )
+      {/* {loading ? (
+        <Stack gap={2} direction="row">
+          <Skeleton variant="rounded" width={260} height={400} />
+          <Skeleton variant="rounded" width={260} height={400} />
+          <Skeleton variant="rounded" width={260} height={400} />
+          <Skeleton variant="rounded" width={260} height={400} />
+        </Stack>
+      ) : ( */}
 
-        //   data.map((item, index) => {
-        //       return <Card key={index} item={item} />;
-        //     })
-      }
-      {/* <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 pt-6 gap-6">
-       
-      </div> */}
+      <div className="custom-swiper">
+        <Swiper
+          modules={[Pagination]}
+          spaceBetween={30}
+          slidesPerView={4.2}
+          // navigation
+          pagination={{ clickable: true }}
+          breakpoints={{
+            // when window width is >= 320px
+            320: {
+              slidesPerView: 1,
+              spaceBetween: 20,
+            },
+            // when window width is >= 640px
+            640: {
+              slidesPerView: 2,
+              spaceBetween: 20,
+            },
+            // when window width is >= 768px
+            768: {
+              slidesPerView: 3,
+              spaceBetween: 30,
+            },
+            // when window width is >= 1024px
+            1024: {
+              slidesPerView: 4,
+              spaceBetween: 30,
+            },
+          }}
+        >
+          {loading
+            ? [...Array(4)].map((_, index) => (
+                <SwiperSlide key={index}>
+                  <Skeleton variant="rounded" height={400} />
+                </SwiperSlide>
+              ))
+            : data &&
+              data.map((item, index) => {
+                return (
+                  <SwiperSlide key={index}>
+                    <Card item={item} />
+                  </SwiperSlide>
+                );
+              })}
+        </Swiper>
+      </div>
+      {/* )} */}
       <div className="grid grid-cols-1 mt-6">
         <div className="text-center md:hidden block">
           <Link

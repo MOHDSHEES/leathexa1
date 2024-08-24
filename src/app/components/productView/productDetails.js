@@ -14,17 +14,18 @@ const ProductDetails = ({ product }) => {
   }, [selectedVariantIdx]);
 
   return (
-    <div className="grid md:grid-cols-2 grid-cols-1 gap-6 items-start ">
-      <div className="">
+    <div className="grid md:grid-cols-9 grid-cols-1 gap-6 items-start ">
+      <div className="md:col-span-4">
         <ProductImages images={productImages} selectedColor={selectedColor} />
       </div>
-
-      <ProductDescription
-        product={product}
-        selectedColor={selectedColor}
-        setSelectedVariantIdx={setSelectedVariantIdx}
-        setSelectedColor={setSelectedColor}
-      />
+      <div className="md:col-span-5" style={{ height: "100%" }}>
+        <ProductDescription
+          product={product}
+          selectedColor={selectedColor}
+          setSelectedVariantIdx={setSelectedVariantIdx}
+          setSelectedColor={setSelectedColor}
+        />
+      </div>
     </div>
   );
 };

@@ -6,7 +6,7 @@ export async function middleware(req) {
   const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
 
   // Check if the request is for a protected route
-  const protectedPaths = ["/shop-cart", "/use"];
+  const protectedPaths = ["/user"];
   const isProtected = protectedPaths.some((path) =>
     req.nextUrl.pathname.startsWith(path)
   );
@@ -25,5 +25,5 @@ export async function middleware(req) {
 }
 
 export const config = {
-  matcher: ["/shop-cart", "/user/:path*"], // List all the protected routes here
+  matcher: ["/user/:path*"], // List all the protected routes here
 };

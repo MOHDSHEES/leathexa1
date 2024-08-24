@@ -80,7 +80,7 @@ const ResetPassword = () => {
   }
 
   return (
-    <div className="p-6 rounded-md shadow dark:shadow-gray-800 bg-white dark:bg-slate-900 mt-6">
+    <div className="p-6 rounded-md shadow dark:shadow-gray-800 bg-white text-black dark:bg-gray-100 light:text-black mt-6">
       <div className="grid lg:grid-cols-2 grid-cols-1 gap-5">
         <div>
           <Stack

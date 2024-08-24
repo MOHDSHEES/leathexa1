@@ -49,6 +49,18 @@ const productSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  warranty: {
+    type: Number,
+  },
+  fabric: {
+    type: String,
+  },
+  sleeve: {
+    type: String,
+  },
+  //   materialType: {
+  //     type: String,
+  //   },
   stock: {
     type: Number,
     required: true,
@@ -56,7 +68,7 @@ const productSchema = new mongoose.Schema({
   weight: {
     type: Number,
   },
-  images: [],
+  //   images: [],
   tags: [],
   ratings: {
     type: Number,

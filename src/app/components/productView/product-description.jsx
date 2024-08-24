@@ -14,11 +14,11 @@ export default function ProductDescription({
 }) {
   // const [selectedColor, setSelectedColor] = useState(product.variants[0].color);
   const [selectedSize, setSelectedSize] = useState(
-    product.variants[0].sizes[0].size
+    product.variants[0].sizes[0]
   );
   const [sizes, setSizes] = useState(product.variants[0].sizes);
+  // console.log(selectedSize);
   const [adding, setAdding] = useState(false);
-  //   console.log(product);
   const { messageApi, csrfToken, user, setUser } = useContext(MyContext);
   let [count, setCount] = useState(1);
 
@@ -52,7 +52,7 @@ export default function ProductDescription({
         quantity: count,
         variant: {
           color: selectedColor,
-          size: selectedSize,
+          size: selectedSize.size,
         },
       },
     });
@@ -161,16 +161,23 @@ export default function ProductDescription({
           <div className="space-x-1">
             {sizes &&
               sizes.length > 0 &&
-              sizes.map((size, idx) => {
+              sizes.map((sz, idx) => {
+                const size = sz.size;
                 return (
-                  <Link
-                    key={size.size + idx}
-                    onClick={() => setSelectedSize(size)}
+                  <button
+                    key={size + idx}
+                    onClick={() => setSelectedSize(sz)}
                     href=""
-                    className="size-9 inline-flex items-center justify-center tracking-wide align-middle text-base text-center rounded-md bg-orange-500/5 hover:bg-orange-500 text-orange-500 hover:text-white"
+                    className={`size-9 inline-flex items-center justify-center tracking-wide 
+                    align-middle text-base text-center rounded-md  hover:bg-orange-500
+                     text-orange-500 hover:text-white  ${
+                       selectedSize.size === size
+                         ? "text-white bg-orange-500"
+                         : "bg-orange-500/5 "
+                     }`}
                   >
-                    {size.size}
-                  </Link>
+                    {size}
+                  </button>
                 );
               })}
           </div>

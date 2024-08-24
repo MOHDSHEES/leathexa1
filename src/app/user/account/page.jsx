@@ -10,7 +10,7 @@ export default function UserAccount() {
       <MainLayout>
         <section className="relative lg:pb-24 pb-16 md:mt-[84px] mt-[70px]">
           <div className="md:container container-fluid relative">
-            <div className="relative overflow-hidden md:rounded-md shadow dark:shadow-gray-700 h-52 bg-[url('/images/hero/pages.jpg')] bg-center bg-no-repeat bg-cover"></div>
+            <div className="relative overflow-hidden md:rounded-md shadow dark:shadow-gray-700 h-52 bg-[url('/images/graphics/account.webp')] bg-center bg-no-repeat bg-cover"></div>
           </div>
 
           <div className="container relative md:mt-24 mt-16">

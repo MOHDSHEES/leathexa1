@@ -12,7 +12,7 @@ const Card = ({ item }) => {
   const { user, csrfToken, messageApi, setUser } = useContext(MyContext);
   const [adding, setAdding] = useState(false);
   const imageUrl =
-    item.images && item.images[0]
+    item.images && item.images
       ? item.images[0]
       : "/images/shop/black-print-t-shirt.jpg";
   // console.log(user);
@@ -154,7 +154,8 @@ const Card = ({ item }) => {
             {/* <ul className="font-medium text-amber-400 list-none"> */}
             <Rating
               name="half-rating-read"
-              defaultValue={item.ratings}
+              //   defaultValue={item.ratings}
+              value={item.ratings}
               precision={0.5}
               size="small"
               readOnly

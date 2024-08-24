@@ -53,7 +53,9 @@ const Cart = ({ cartMenu, setCartMenu }) => {
 
   useEffect(() => {
     if (
-      (!cartItems || user.itemsInCart !== cartItems.cartItems.length) &&
+      (!cartItems ||
+        user.itemsInCart !==
+          (cartItems.cartItems && cartItems.cartItems.length)) &&
       csrfToken &&
       cartMenu &&
       user

@@ -17,6 +17,7 @@ const CartTable = ({ cartItems, total, setCartItems }) => {
       csrfToken: csrfToken,
       cartId: cartItems._id,
       productId: item.product._id,
+      variant: item.variant,
       userId: user._id,
     });
     if (data.status === 200) {
@@ -129,13 +130,13 @@ const CartTable = ({ cartItems, total, setCartItems }) => {
         <div className="grid lg:grid-cols-12 md:grid-cols-2 grid-cols-1 mt-6 gap-6">
           <div className="lg:col-span-9 md:order-1 order-3">
             <div className="space-x-1">
-              <button
+              <Link
                 disabled={disable}
-                href=""
+                href="/user/checkout"
                 className="py-2 px-5 inline-block font-semibold tracking-wide align-middle text-base text-center bg-orange-500 text-white rounded-md mt-2"
               >
                 Shop Now
-              </button>
+              </Link>
               {/* <Link
                   href=""
                   className="py-2 px-5 inline-block font-semibold tracking-wide align-middle text-base text-center rounded-md bg-orange-500/5 hover:bg-orange-500 text-orange-500 hover:text-white mt-2"

@@ -22,7 +22,14 @@ export async function POST(req) {
     if (req.method === "POST") {
       const cart = await Cart.findOneAndUpdate(
         { _id: data.cartId },
-        { $pull: { cartItems: { product: data.productId } } },
+        {
+          $pull: {
+            cartItems: {
+              product: data.productId,
+              variant: data.variant,
+            },
+          },
+        },
         { new: true }
       ).populate({
         model: Product,

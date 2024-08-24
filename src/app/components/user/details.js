@@ -82,7 +82,7 @@ const Details = () => {
   }
 
   return (
-    <div className="p-6 rounded-md shadow dark:shadow-gray-800 bg-white dark:bg-slate-900">
+    <div className="p-6 rounded-md shadow dark:shadow-gray-800 bg-white text-black dark:bg-gray-100 light:text-black">
       <Stack className="mb-4" style={{ alignItems: "center" }} direction="row ">
         <h5 className="text-lg font-semibold ">Personal Detail :</h5>
         <Button onClick={handelEdit} sx={{ marginLeft: "auto" }} variant="text">

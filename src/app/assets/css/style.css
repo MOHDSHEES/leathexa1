@@ -25,6 +25,9 @@
   border-radius: 50%;
   box-shadow: 1px 1px 2px #000000e6;
 }
+.c-primary-btn {
+  background-color: #1976d2;
+}
 @media (max-width: 375px) {
   .navlogo-container {
     width: 120px;

@@ -35,7 +35,12 @@ export default function userLayout({ children }) {
             height: "100vh",
           }}
         >
-          <Spin tip="" size="large"></Spin>
+          <img
+            style={{ width: "50px", height: "50px" }}
+            src="/images/logo/loading.gif"
+            alt="Loading..."
+          />
+          {/* <Spin tip="" size="large"></Spin> */}
         </Box>
       </div>
     );
