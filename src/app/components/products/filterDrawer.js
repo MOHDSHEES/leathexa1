@@ -10,6 +10,7 @@ export default function FilterDrawer({
   getFilteredData,
   page,
   filteredUrl,
+  setPage,
 }) {
   //   const [open, setOpen] = React.useState(false);
   const [filter, setFilter] = useState({
@@ -43,6 +44,7 @@ export default function FilterDrawer({
     if (filter.size.length > 0) {
       queryParams.size = filter.size.join(",");
     }
+    setPage(1);
     queryParams.page = 1;
     const queryParam = new URLSearchParams(queryParams).toString();
     // Update the URL without refreshing the page

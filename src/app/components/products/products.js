@@ -157,6 +157,7 @@ const Products = ({
         category={category}
         getFilteredData={getFilteredData}
         page={page}
+        setPage={setPage}
         filteredUrl={filteredUrl}
       />
     </section>
