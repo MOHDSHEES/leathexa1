@@ -92,7 +92,7 @@ const LoginComponent = () => {
               <div className="grid md:grid-cols-2 grid-cols-1 items-center">
                 <div className="relative md:shrink-0">
                   <Image
-                    src="/images/login.jpg"
+                    src="/images/graphics/Login.webp"
                     width={0}
                     height={0}
                     sizes="100vw"
