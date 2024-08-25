@@ -8,7 +8,6 @@ export default function FilterDrawer({
   setOpen,
   category,
   getFilteredData,
-  page,
   filteredUrl,
   setPage,
 }) {
