@@ -2,7 +2,7 @@
 import React, { createContext, useEffect, useState } from "react";
 import axios from "axios";
 import { message } from "antd";
-import { signOut, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import BackdropComponent from "./app/components/functions/backDrop";
 
 // Create the context

@@ -1,11 +1,12 @@
 "use client";
 
 import { MyContext } from "@/src/context";
-import { Box } from "@mui/material";
+// import { Box } from "@mui/material";
 import { signOut, useSession } from "next-auth/react";
 import { useContext, useEffect, useState } from "react";
 import { closeMessage } from "../components/functions/message";
-import { Spin } from "antd";
+// import { Spin } from "antd";
+import CustomLoader from "../components/loader/customLoader";
 
 export default function userLayout({ children }) {
   const { messageApi, user } = useContext(MyContext);
@@ -26,23 +27,24 @@ export default function userLayout({ children }) {
 
   if (loading)
     return (
-      <div>
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            height: "100vh",
-          }}
-        >
-          <img
-            style={{ width: "50px", height: "50px" }}
-            src="/images/logo/loading.gif"
-            alt="Loading..."
-          />
-          {/* <Spin tip="" size="large"></Spin> */}
-        </Box>
-      </div>
+      <CustomLoader />
+      // <div>
+      //   <Box
+      //     sx={{
+      //       display: "flex",
+      //       justifyContent: "center",
+      //       alignItems: "center",
+      //       height: "100vh",
+      //     }}
+      //   >
+      //     <img
+      //       style={{ width: "50px", height: "50px" }}
+      //       src="/images/logo/loading.gif"
+      //       alt="Loading..."
+      //     />
+      //     {/* <Spin tip="" size="large"></Spin> */}
+      //   </Box>
+      // </div>
     );
 
   return <>{children}</>;

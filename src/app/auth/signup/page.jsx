@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import SignUpComponent from "../../components/authComponents/signUpComponent";
 import { useSession } from "next-auth/react";
 import { Spin } from "antd";
+import CustomLoader from "../../components/loader/customLoader";
 // import Switcher from "../components/switcher";
 
 export default function Signup() {
@@ -25,16 +26,17 @@ export default function Signup() {
   }, [session]);
   if (loading)
     return (
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "100vh",
-        }}
-      >
-        <Spin tip="" size="large"></Spin>
-      </div>
+      <CustomLoader />
+      // <div
+      //   style={{
+      //     display: "flex",
+      //     justifyContent: "center",
+      //     alignItems: "center",
+      //     height: "100vh",
+      //   }}
+      // >
+      //   <Spin tip="" size="large"></Spin>
+      // </div>
     );
   if (!session || !session.user) {
     return (
