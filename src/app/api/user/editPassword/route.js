@@ -11,7 +11,7 @@ export async function POST(req) {
   const data = await req.json();
   if (!session || !session.user)
     return NextResponse.json({ status: 501, msg: "Not Authorized" });
-  if (!verifyCsrfToken(data.csrfToken)) {
+  if (!verifyCsrfToken(req)) {
     return NextResponse.json({ status: 403, msg: "Invalid CSRF token" });
   }
   try {

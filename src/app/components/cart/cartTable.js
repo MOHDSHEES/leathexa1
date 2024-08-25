@@ -8,13 +8,12 @@ import axios from "axios";
 import CartTableRow from "./cartTableRow";
 
 const CartTable = ({ cartItems, total, setCartItems }) => {
-  const { csrfToken, messageApi, user, setUser } = useContext(MyContext);
+  const { messageApi, user, setUser } = useContext(MyContext);
   const [disable, setDisable] = useState(false);
   async function removeItem(item, setRemoving) {
     setRemoving(true);
     setDisable(true);
     const { data } = await axios.post("/api/cart/product/remove", {
-      csrfToken: csrfToken,
       cartId: cartItems._id,
       productId: item.product._id,
       variant: item.variant,

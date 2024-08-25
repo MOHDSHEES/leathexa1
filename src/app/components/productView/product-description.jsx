@@ -5,6 +5,7 @@ import { Rating } from "@mui/material";
 import { closeMessage, openMessage } from "../functions/message";
 import { MyContext } from "@/src/context";
 import axios from "axios";
+import addToCart, { userActivityAnalytics } from "../axiosRoutes/addToCart";
 
 export default function ProductDescription({
   product,
@@ -19,7 +20,7 @@ export default function ProductDescription({
   const [sizes, setSizes] = useState(product.variants[0].sizes);
   // console.log(selectedSize);
   const [adding, setAdding] = useState(false);
-  const { messageApi, csrfToken, user, setUser } = useContext(MyContext);
+  const { messageApi, user, setUser } = useContext(MyContext);
   let [count, setCount] = useState(1);
 
   const increments = () => {
@@ -37,16 +38,15 @@ export default function ProductDescription({
     setSizes(variant.sizes ? variant.sizes : null);
   };
 
-  async function addToCart() {
+  async function addProductToCart() {
     if (!user) {
       closeMessage(messageApi, "Login to Add Product.", "error");
       return;
     }
     setAdding(true);
     openMessage(messageApi, "Adding To Cart...");
-    const { data } = await axios.post("/api/cart/product/add", {
+    const data = await addToCart({
       userId: user._id,
-      csrfToken: csrfToken,
       details: {
         product: product._id,
         quantity: count,
@@ -59,6 +59,20 @@ export default function ProductDescription({
     if (data.status === 200) {
       closeMessage(messageApi, "Item Added Successfully", "success");
       setUser({ ...user, itemsInCart: data.data.cartItems.length });
+      userActivityAnalytics(
+        user._id,
+        "add_to_cart",
+        {
+          product: product._id,
+          quantity: count,
+        },
+        {
+          details: {
+            color: selectedColor,
+            size: selectedSize.size,
+          },
+        }
+      );
     } else closeMessage(messageApi, data.msg);
     setAdding(false);
   }
@@ -218,7 +232,7 @@ export default function ProductDescription({
           Shop Now
         </Link>
         <button
-          onClick={addToCart}
+          onClick={addProductToCart}
           disabled={adding}
           className="py-2 px-5 inline-block font-semibold tracking-wide align-middle text-base text-center rounded-md bg-orange-500/5 hover:bg-orange-500 text-orange-500 hover:text-white mt-2"
         >

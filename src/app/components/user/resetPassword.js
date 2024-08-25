@@ -9,8 +9,7 @@ import DOMPurify from "dompurify";
 import Joi from "joi";
 
 const ResetPassword = () => {
-  const { user, messageApi, setBackDropOpen, csrfToken } =
-    useContext(MyContext);
+  const { user, messageApi, setBackDropOpen } = useContext(MyContext);
   const [edit, setEdit] = useState(false);
   const [disabled, setDisabled] = useState(false);
   const [pass, setPass] = useState(true);
@@ -53,7 +52,6 @@ const ResetPassword = () => {
       setDisabled(true);
       setBackDropOpen(true);
       const { data } = await axios.post("/api/user/editPassword", {
-        csrfToken: csrfToken,
         email: user.email,
         oldPassword: state.oldPassword,
         details: {

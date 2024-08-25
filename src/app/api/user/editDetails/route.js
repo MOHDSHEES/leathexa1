@@ -8,7 +8,10 @@ export async function POST(req) {
   const session = await getServerSession(req);
   // Check if the user is authenticated
   const data = await req.json();
-  if (!verifyCsrfToken(data.csrfToken)) {
+
+  // Extract the CSRF token sent in the request header
+
+  if (!verifyCsrfToken(req)) {
     return NextResponse.json({ status: 403, msg: "Invalid CSRF token" });
   }
   if (!session || !session.user)

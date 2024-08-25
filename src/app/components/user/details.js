@@ -12,8 +12,7 @@ import DOMPurify from "dompurify";
 import Joi from "joi";
 
 const Details = () => {
-  const { user, messageApi, setUser, setBackDropOpen, csrfToken } =
-    useContext(MyContext);
+  const { user, messageApi, setUser, setBackDropOpen } = useContext(MyContext);
   const [edit, setEdit] = useState(false);
   const [disabled, setDisabled] = useState(false);
   const nameInputRef = useRef(null);
@@ -58,7 +57,6 @@ const Details = () => {
     setDisabled(true);
     setBackDropOpen(true);
     const { data } = await axios.post("/api/user/editDetails", {
-      csrfToken: csrfToken,
       email: user.email,
       details: {
         name: DOMPurify.sanitize(state.name),

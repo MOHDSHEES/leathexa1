@@ -20,7 +20,6 @@ const BestSeller = () => {
       if (data.status === 200) setData(data.data);
       setLoading(false);
     };
-
     getDetails();
   }, []);
   return (

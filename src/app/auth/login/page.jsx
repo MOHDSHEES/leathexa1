@@ -20,7 +20,7 @@ export default function LoginWrapper() {
 function Login() {
   const router = useRouter();
   const { data: session, status } = useSession();
-  const { setUser, messageApi, user } = useContext(MyContext);
+  const { setUser, user } = useContext(MyContext);
   const [loading, setLoading] = useState(true);
   const searchParams = useSearchParams();
 
@@ -55,7 +55,7 @@ function Login() {
     if (session && session.user) {
       setLoading(true);
       // if (!user) fetchUserData();
-      setUser(session.user);
+      if (!user) setUser(session.user);
       const url = callBackUrl ? callBackUrl : "/";
       router.replace(url, undefined, {
         onComplete: () => setLoading(false),

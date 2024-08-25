@@ -8,13 +8,12 @@ import { MyContext } from "@/src/context";
 import axios from "axios";
 
 export default function Checkout() {
-  const { user, csrfToken, cartItems, setCartItems } = useContext(MyContext);
+  const { user, cartItems, setCartItems } = useContext(MyContext);
   const [items, setItems] = useState(cartItems);
 
   useEffect(() => {
     const getCartItems = async () => {
       const { data } = await axios.post("/api/cart/getItems", {
-        csrfToken: csrfToken,
         userId: user._id,
       });
       if (data.status === 200) {

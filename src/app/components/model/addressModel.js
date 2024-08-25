@@ -30,8 +30,7 @@ export default function AddressModel({
 }) {
   const [checked, setChecked] = useState(true);
   const [disabled, setDisabled] = useState(false);
-  const { messageApi, user, csrfToken, setBackDropOpen, setUser } =
-    useContext(MyContext);
+  const { messageApi, user, setBackDropOpen, setUser } = useContext(MyContext);
 
   const [state, setState] = useState({
     address: "",
@@ -77,7 +76,6 @@ export default function AddressModel({
     setDisabled(true);
     setBackDropOpen(true);
     const { data } = await axios.post("/api/user/addAddress", {
-      csrfToken: csrfToken,
       userId: user._id,
       details: state,
       name: name,

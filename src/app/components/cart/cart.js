@@ -13,7 +13,6 @@ const Cart = () => {
     user,
     cartItems,
     setCartItems,
-    csrfToken,
     messageApi,
     setCartLoading,
     cartLoading,
@@ -23,7 +22,6 @@ const Cart = () => {
     const getCartItems = async () => {
       setCartLoading(true);
       const { data } = await axios.post("/api/cart/getItems", {
-        csrfToken: csrfToken,
         userId: user._id,
       });
       if (data.status === 200) {
@@ -34,10 +32,10 @@ const Cart = () => {
       setCartLoading(false);
     };
 
-    if (!cartItems && csrfToken) {
+    if (!cartItems) {
       getCartItems();
     }
-  }, [cartItems, csrfToken]);
+  }, [cartItems]);
 
   useEffect(() => {
     const calculateTotalPrice = () => {

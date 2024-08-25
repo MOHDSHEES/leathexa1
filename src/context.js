@@ -18,12 +18,11 @@ const MyProvider = ({ children, initialUser }) => {
   const [cartItems, setCartItems] = useState(null);
   const [cartLoading, setCartLoading] = useState(true);
 
-  const [csrfToken, setCsrfToken] = useState("");
+  // const [csrfToken, setCsrfToken] = useState("");
 
   useEffect(() => {
     const fetchCsrfToken = async () => {
       const { data } = await axios.post("/api/getCsrfToken");
-      setCsrfToken(data.token);
     };
     fetchCsrfToken();
   }, []);
@@ -41,7 +40,7 @@ const MyProvider = ({ children, initialUser }) => {
   //   setLoading(false);
   // }
 
-  const { data, status } = useSession();
+  const { status } = useSession();
   // let flag = 1;
   useEffect(() => {
     // if (data && data.user && !user) {
@@ -57,7 +56,7 @@ const MyProvider = ({ children, initialUser }) => {
     if (status !== "loading") {
       setLoading(false);
     }
-  }, [data]);
+  }, [status]);
 
   return (
     <MyContext.Provider
@@ -70,8 +69,8 @@ const MyProvider = ({ children, initialUser }) => {
         setBackDropOpen,
         isAdmin,
         setIsAdmin,
-        csrfToken,
-        setCsrfToken,
+        // csrfToken,
+        // setCsrfToken,
         cartItems,
         setCartItems,
         setCartLoading,

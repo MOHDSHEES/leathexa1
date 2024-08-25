@@ -1,10 +1,13 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ProductImages from "./productImages";
 import ProductDescription from "./product-description";
+import { MyContext } from "@/src/context";
+import { userActivityAnalytics } from "../axiosRoutes/addToCart";
 
 const ProductDetails = ({ product }) => {
   const [selectedColor, setSelectedColor] = useState(product.variants[0].color);
+  const { user } = useContext(MyContext);
   const [productImages, setProductImages] = useState(
     product.variants[0].images
   );
@@ -12,6 +15,14 @@ const ProductDetails = ({ product }) => {
   useEffect(() => {
     setProductImages(product.variants[selectedVariantIdx].images);
   }, [selectedVariantIdx]);
+
+  useEffect(() => {
+    if (user && user._id) {
+      userActivityAnalytics(user._id, "product_view", {
+        product: product._id,
+      });
+    }
+  }, [user]);
 
   return (
     <div className="grid md:grid-cols-9 grid-cols-1 gap-6 items-start ">

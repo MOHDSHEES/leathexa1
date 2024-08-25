@@ -16,7 +16,7 @@ import axios from "axios";
 
 export default function AddReviewModal({ open, setOpen, productId }) {
   //   const [open, setOpen] = React.useState(false);
-  const { messageApi, csrfToken, user } = useContext(MyContext);
+  const { messageApi, user } = useContext(MyContext);
   const [state, setState] = useState({
     rating: 4,
     review: "",
@@ -54,9 +54,8 @@ export default function AddReviewModal({ open, setOpen, productId }) {
         user: user._id,
         product: productId,
       },
-      csrfToken: csrfToken,
     });
-    console.log(data);
+    // console.log(data);
     if (data && data.status === 200) {
       closeMessage(messageApi, "Review added successfully.", "success");
       //   navigate("/edit", { replace: true });

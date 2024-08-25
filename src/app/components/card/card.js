@@ -5,26 +5,25 @@ import { FiHeart, FiEye, FiBookmark } from "../../assets/icons/vander";
 import { Rating } from "@mui/material";
 import { MyContext } from "@/src/context";
 import { closeMessage } from "../functions/message";
-import axios from "axios";
 import { Spin } from "antd";
+import addToCart, { userActivityAnalytics } from "../axiosRoutes/addToCart";
 
 const Card = ({ item }) => {
-  const { user, csrfToken, messageApi, setUser } = useContext(MyContext);
+  const { user, messageApi, setUser } = useContext(MyContext);
   const [adding, setAdding] = useState(false);
   const imageUrl =
     item.images && item.images
       ? item.images[0]
       : "/images/shop/black-print-t-shirt.jpg";
   // console.log(user);
-  async function addToCart() {
+  async function addProductToCart() {
     if (!user) {
       closeMessage(messageApi, "Login to Add Product.", "error");
       return;
     }
     setAdding(true);
-    const { data } = await axios.post("/api/cart/product/add", {
+    const data = await addToCart({
       userId: user._id,
-      csrfToken: csrfToken,
       details: {
         product: item._id,
         quantity: 1,
@@ -34,9 +33,24 @@ const Card = ({ item }) => {
         },
       },
     });
+
     if (data.status === 200) {
       closeMessage(messageApi, "Item Added Successfully", "success");
       setUser({ ...user, itemsInCart: data.data.cartItems.length });
+      userActivityAnalytics(
+        user._id,
+        "add_to_cart",
+        {
+          product: item._id,
+          quantity: 1,
+        },
+        {
+          details: {
+            color: item.variants[0].color,
+            size: item.variants[0].sizes[0].size,
+          },
+        }
+      );
     } else closeMessage(messageApi, data.msg);
     setAdding(false);
   }
@@ -57,7 +71,7 @@ const Card = ({ item }) => {
 
           <div className="absolute -bottom-20 group-hover:bottom-3 start-3 end-3 duration-500">
             <button
-              onClick={addToCart}
+              onClick={addProductToCart}
               className="py-2 px-5 inline-block font-semibold tracking-wide align-middle duration-500 text-base text-center bg-slate-900 text-white w-full rounded-md"
             >
               Add to Cart

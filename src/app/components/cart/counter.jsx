@@ -56,7 +56,7 @@ export default function Counter({ qtn, cartItems, setCartItems, item }) {
       if (saveCount !== qtn) {
         handleSave();
       }
-    }, 700); // Delay in milliseconds (e.g., 500ms)
+    }, 1000); // Delay in milliseconds (e.g., 500ms)
 
     return () => clearTimeout(timer);
   }, [saveCount]);

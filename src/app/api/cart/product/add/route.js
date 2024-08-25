@@ -9,7 +9,7 @@ export async function POST(req) {
   const session = await getServerSession(req);
   // Check if the user is authenticated
   const data = await req.json();
-  if (!verifyCsrfToken(data.csrfToken)) {
+  if (!verifyCsrfToken(req)) {
     return NextResponse.json({ status: 403, msg: "Invalid CSRF token" });
   }
   if (!session || !session.user)
@@ -25,7 +25,13 @@ export async function POST(req) {
         // If no cart exists, create a new one
         cart = new Cart({
           user: data.userId,
-          cartItems: [data.details],
+          cartItems: [
+            {
+              ...details,
+              addedAt: Date.now(), // Set timestamp when adding item
+              updatedAt: Date.now(), // Set timestamp when adding item
+            },
+          ],
         });
       } else {
         // Check if item with same product, color, and size exists
@@ -37,7 +43,6 @@ export async function POST(req) {
         );
 
         if (existingItemIndex > -1) {
-          // Item exists, update quantity
           return NextResponse.json({
             status: 202,
             msg: "Item Already present",
@@ -45,7 +50,11 @@ export async function POST(req) {
           // cart.cartItems[existingItemIndex].quantity += details.quantity;
         } else {
           // Item does not exist, add to cartItems
-          cart.cartItems.push(details);
+          cart.cartItems.push({
+            ...details,
+            addedAt: Date.now(), // Set timestamp when adding item
+            updatedAt: Date.now(), // Set timestamp when adding item
+          });
         }
       }
 

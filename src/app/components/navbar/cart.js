@@ -21,21 +21,13 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 }));
 
 const Cart = ({ cartMenu, setCartMenu }) => {
-  const {
-    user,
-    cartItems,
-    setCartItems,
-    messageApi,
-    csrfToken,
-    setCartLoading,
-    loading,
-  } = useContext(MyContext);
+  const { user, cartItems, setCartItems, messageApi, setCartLoading, loading } =
+    useContext(MyContext);
 
   const [total, setTotal] = useState(0);
   const getCartItems = async () => {
     setCartLoading(true);
     const { data } = await axios.post("/api/cart/getItems", {
-      csrfToken: csrfToken,
       userId: user._id,
     });
     if (data.status === 200) {
@@ -56,13 +48,12 @@ const Cart = ({ cartMenu, setCartMenu }) => {
       (!cartItems ||
         user.itemsInCart !==
           (cartItems.cartItems && cartItems.cartItems.length)) &&
-      csrfToken &&
       cartMenu &&
       user
     ) {
       getCartItems();
     }
-  }, [cartItems, csrfToken, cartMenu, user]);
+  }, [cartItems, cartMenu, user]);
 
   useEffect(() => {
     const calculateTotalPrice = () => {

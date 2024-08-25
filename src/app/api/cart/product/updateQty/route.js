@@ -17,7 +17,12 @@ export async function POST(req) {
     if (req.method === "POST") {
       let cart = await Cart.findOneAndUpdate(
         { _id: data._id, "cartItems._id": data.productId },
-        { $set: { "cartItems.$.quantity": data.quantity } },
+        {
+          $set: {
+            "cartItems.$.quantity": data.quantity,
+            "cartItems.$.updatedAt": Date.now(),
+          },
+        },
         { new: true }
       ).populate({
         model: Product,

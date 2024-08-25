@@ -1,8 +1,8 @@
-import { verifyCsrfToken } from "@/lib/csrfToken";
+// import { verifyCsrfToken } from "@/lib/csrfToken";
 import dbConnect from "@/lib/mongoose";
 import Product from "@/models/productModel";
 // import userModel from "@/models/userModels";
-import { getServerSession } from "next-auth";
+// import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req) {
