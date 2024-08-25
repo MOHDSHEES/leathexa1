@@ -114,8 +114,11 @@ const Cart = ({ cartMenu, setCartMenu }) => {
           <ShoppingCartIcon className="h-4 w-4" />
         </button>
       </StyledBadge> */}
+      {/* dropdown-menu fixed left-2.5 sm:left-0 w-[calc(100%-1.25rem)] sm:absolute
+      end-0 m-0 mt-4 z-10 sm:w-64 rounded-md bg-white dark:bg-slate-900 shadow
+      dark:shadow-gray-800 */}
       {cartMenu && (
-        <div className="dropdown-menu fixed sm:absolute end-0 m-0 mt-4 z-10 w-64 rounded-md bg-white dark:bg-slate-900 shadow dark:shadow-gray-800">
+        <div className="dropdown-menu left-2.5 sm:left-auto fixed sm:absolute end-0 m-0 mt-4 z-10 w-64 rounded-md bg-white dark:bg-slate-900 shadow dark:shadow-gray-800">
           {user && !user.itemsInCart ? (
             <ul className="py-3 text-start" aria-labelledby="dropdownDefault">
               <div style={{ textAlign: "center", margin: "10px 0px" }}>
