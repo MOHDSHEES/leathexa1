@@ -7,6 +7,7 @@ export default async function addToCart({ userId, details }) {
   });
   return data;
 }
+
 export async function userActivityAnalytics(
   userId,
   type = "add_to_cart",
