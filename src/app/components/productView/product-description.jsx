@@ -4,8 +4,8 @@ import Link from "next/link";
 import { Rating } from "@mui/material";
 import { closeMessage, openMessage } from "../functions/message";
 import { MyContext } from "@/src/context";
-import axios from "axios";
 import addToCart, { userActivityAnalytics } from "../axiosRoutes/addToCart";
+import { useRouter } from "next/navigation";
 
 export default function ProductDescription({
   product,
@@ -18,6 +18,7 @@ export default function ProductDescription({
     product.variants[0].sizes[0]
   );
   const [sizes, setSizes] = useState(product.variants[0].sizes);
+  const router = useRouter();
   // console.log(selectedSize);
   const [adding, setAdding] = useState(false);
   const { messageApi, user, setUser } = useContext(MyContext);
@@ -40,7 +41,10 @@ export default function ProductDescription({
 
   async function addProductToCart() {
     if (!user) {
-      closeMessage(messageApi, "Login to Add Product.", "error");
+      router.push(
+        `/auth/login?callbackUrl=${encodeURIComponent(window.location.href)}`
+      );
+      //  closeMessage(messageApi, "Login to Add Product.", "error");
       return;
     }
     setAdding(true);

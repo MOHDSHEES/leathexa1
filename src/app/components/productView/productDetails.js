@@ -17,12 +17,19 @@ const ProductDetails = ({ product }) => {
   }, [selectedVariantIdx]);
 
   useEffect(() => {
-    if (user && user._id) {
-      userActivityAnalytics(user._id, "product_view", {
-        product: product._id,
-      });
-    }
-  }, [user]);
+    const debounceTimeout = setTimeout(() => {
+      userActivityAnalytics(
+        user && user._id ? user._id : null,
+        "product_view",
+        {
+          product: product._id,
+        }
+      );
+    }, 2000); // 2 seconds delay
+
+    // Clean up the timeout if component unmounts or rerenders
+    return () => clearTimeout(debounceTimeout);
+  }, []);
 
   return (
     <div className="grid md:grid-cols-9 grid-cols-1 gap-6 items-start ">

@@ -4,6 +4,8 @@ import axios from "axios";
 import { message } from "antd";
 import { useSession } from "next-auth/react";
 import BackdropComponent from "./app/components/functions/backDrop";
+import Cookies from "js-cookie";
+import { v4 as uuidv4 } from "uuid";
 
 // Create the context
 const MyContext = createContext();
@@ -22,11 +24,24 @@ const MyProvider = ({ children, initialUser }) => {
 
   useEffect(() => {
     const fetchCsrfToken = async () => {
-      const { data } = await axios.post("/api/getCsrfToken");
+      await axios.post("/api/getCsrfToken");
     };
     fetchCsrfToken();
   }, []);
 
+  useEffect(() => {
+    // Check if a session ID exists in cookies
+    let sessionId = Cookies.get("sessionId");
+
+    if (!sessionId) {
+      // Generate a new session ID
+      sessionId = uuidv4();
+      // Store the session ID in a cookie that lasts for a day
+      Cookies.set("sessionId", sessionId, { expires: 1 });
+    }
+
+    // The session ID is now available in cookies and can be used for tracking
+  }, []);
   // async function getUser() {
   //   flag = 0;
   //   const response = await axios.post("/api/user/getDetails", {
