@@ -7,9 +7,11 @@ import { MyContext } from "@/src/context";
 import { closeMessage } from "../functions/message";
 import { Spin } from "antd";
 import addToCart, { userActivityAnalytics } from "../axiosRoutes/addToCart";
+import { useRouter } from "next/navigation";
 
 const Card = ({ item }) => {
   const { user, messageApi, setUser } = useContext(MyContext);
+  const router = useRouter();
   const [adding, setAdding] = useState(false);
   const imageUrl =
     item.images && item.images
@@ -18,7 +20,8 @@ const Card = ({ item }) => {
   // console.log(user);
   async function addProductToCart() {
     if (!user) {
-      closeMessage(messageApi, "Login to Add Product.", "error");
+      router.push("/auth/login");
+      //  closeMessage(messageApi, "Login to Add Product.", "error");
       return;
     }
     setAdding(true);
