@@ -7,6 +7,7 @@ import User from "./user";
 import NavbarLogo from "./navbarLogo";
 import NavSearch from "./search";
 import PoliciesDropdown from "./policiesDropdown";
+import SearchModel from "../model/searchModel";
 
 export default function Navbar({ navClass, navlight }) {
   let [scrolling, setScrolling] = useState(false);
@@ -14,6 +15,7 @@ export default function Navbar({ navClass, navlight }) {
   let [menu, setMenu] = useState("");
   let [subMenu, setSubMenu] = useState("");
   let [isOpen, setIsOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   let [cartMenu, setCartMenu] = useState(false);
   let [userMenu, setUserMenu] = useState(false);
   let dropdownRef = useRef(null);
@@ -63,104 +65,110 @@ export default function Navbar({ navClass, navlight }) {
   };
 
   return (
-    <nav id="topnav" className={`${navClass} ${scrolling ? "nav-sticky" : ""}`}>
-      <div className="container relative">
-        <NavbarLogo navlight={navlight} />
+    <>
+      <nav
+        id="topnav"
+        className={`${navClass} ${scrolling ? "nav-sticky" : ""}`}
+      >
+        <div className="container relative">
+          <NavbarLogo navlight={navlight} />
 
-        <div className="menu-extras">
-          <div className="menu-item">
-            <Link
-              href="#"
-              className={`navbar-toggle ${isToggle ? "open" : ""}`}
-              id="isToggle"
-              onClick={() => toggleMenu()}
-            >
-              <div className="lines">
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
-            </Link>
+          <div className="menu-extras">
+            <div className="menu-item">
+              <Link
+                href="#"
+                className={`navbar-toggle ${isToggle ? "open" : ""}`}
+                id="isToggle"
+                onClick={() => toggleMenu()}
+              >
+                <div className="lines">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+              </Link>
+            </div>
           </div>
-        </div>
 
-        <ul className="buy-button list-none mb-0">
-          <li
-            className="dropdown inline-block relative pe-1 nav-item"
-            ref={dropdownRef}
-          >
-            <NavSearch
-              navlight={navlight}
-              setIsOpen={setIsOpen}
-              isOpen={isOpen}
-            />
-          </li>
-
-          <li
-            className="dropdown inline-block relative ps-0.5 nav-item"
-            ref={cartRef}
-          >
-            <Cart cartMenu={cartMenu} setCartMenu={setCartMenu} />
-          </li>
-
-          <li className="inline-block ps-0.5 nav-item">
-            <Link
-              href="#"
-              className="size-9 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-base text-center rounded-full bg-orange-500 text-white"
-            >
-              <FiHeart data-feather="heart" className="h-4 w-4"></FiHeart>
-            </Link>
-          </li>
-
-          <li
-            className="dropdown inline-block relative ps-0.5 nav-item"
-            ref={userRef}
-          >
-            <User userMenu={userMenu} setUserMenu={setUserMenu} />
-          </li>
-        </ul>
-        {/* first  */}
-        <div
-          id="navigation"
-          style={{ display: isToggle === true ? "block" : "none" }}
-        >
-          <ul
-            className={`navigation-menu ${
-              navlight === true ? "nav-light" : ""
-            }`}
-          >
+          <ul className="buy-button list-none mb-0">
             <li
-              // style={{ marginLeft: "3px", marginRight: "3px" }}
-              className={`${menu === "/products/mens" ? "active" : ""}`}
+              className="dropdown inline-block relative pe-1 nav-item"
+              ref={dropdownRef}
             >
-              <Link href="/products/mens" className="sub-menu-item">
-                Mens
+              <NavSearch
+                navlight={navlight}
+                setIsOpen={setSearchOpen}
+                isOpen={searchOpen}
+              />
+            </li>
+
+            <li
+              className="dropdown inline-block relative ps-0.5 nav-item"
+              ref={cartRef}
+            >
+              <Cart cartMenu={cartMenu} setCartMenu={setCartMenu} />
+            </li>
+
+            <li className="inline-block ps-0.5 nav-item">
+              <Link
+                href="#"
+                className="size-9 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-base text-center rounded-full bg-orange-500 text-white"
+              >
+                <FiHeart data-feather="heart" className="h-4 w-4"></FiHeart>
               </Link>
             </li>
-            <li className={`${menu === "/products/womens" ? "active" : ""}`}>
-              <Link href="/products/womens" className="sub-menu-item">
-                Womens
-              </Link>
-            </li>
-            <li className={`${menu === "/sale" ? "active" : ""}`}>
-              <Link href="/sale" className="sub-menu-item">
-                Custom
-              </Link>
-            </li>
-            <PoliciesDropdown
-              menu={menu}
-              setMenu={setMenu}
-              subMenu={subMenu}
-              setSubMenu={setSubMenu}
-            />
-            <li className={`${menu === "/contact" ? "active" : ""}`}>
-              <Link href="/contact" className="sub-menu-item">
-                Contact
-              </Link>
+
+            <li
+              className="dropdown inline-block relative ps-0.5 nav-item"
+              ref={userRef}
+            >
+              <User userMenu={userMenu} setUserMenu={setUserMenu} />
             </li>
           </ul>
+          {/* first  */}
+          <div
+            id="navigation"
+            style={{ display: isToggle === true ? "block" : "none" }}
+          >
+            <ul
+              className={`navigation-menu ${
+                navlight === true ? "nav-light" : ""
+              }`}
+            >
+              <li
+                // style={{ marginLeft: "3px", marginRight: "3px" }}
+                className={`${menu === "/products/mens" ? "active" : ""}`}
+              >
+                <Link href="/products/mens" className="sub-menu-item">
+                  Mens
+                </Link>
+              </li>
+              <li className={`${menu === "/products/womens" ? "active" : ""}`}>
+                <Link href="/products/womens" className="sub-menu-item">
+                  Womens
+                </Link>
+              </li>
+              <li className={`${menu === "/sale" ? "active" : ""}`}>
+                <Link href="/sale" className="sub-menu-item">
+                  Custom
+                </Link>
+              </li>
+              <PoliciesDropdown
+                menu={menu}
+                setMenu={setMenu}
+                subMenu={subMenu}
+                setSubMenu={setSubMenu}
+              />
+              <li className={`${menu === "/contact" ? "active" : ""}`}>
+                <Link href="/contact" className="sub-menu-item">
+                  Contact
+                </Link>
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+      <SearchModel open={searchOpen} setOpen={setSearchOpen} />
+    </>
   );
 }

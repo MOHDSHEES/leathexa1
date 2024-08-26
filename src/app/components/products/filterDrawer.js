@@ -43,6 +43,7 @@ export default function FilterDrawer({
     if (filter.size.length > 0) {
       queryParams.size = filter.size.join(",");
     }
+    if (filter.discount) queryParams.discount = filter.discount;
     setPage(1);
     queryParams.page = 1;
     const queryParam = new URLSearchParams(queryParams).toString();

@@ -56,8 +56,24 @@ const Card = ({ item }) => {
   }
   //   console.log(item);
   return (
-    <Spin tip="Adding..." spinning={adding}>
-      <div className="group">
+    <div className="group">
+      <Spin
+        // tip="Adding..."
+        indicator={
+          <img
+            src="/images/animated/loading.gif"
+            // style={{ fontSize: 150 }}
+            style={{
+              height: "150px",
+              width: "150px",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+            }}
+          />
+        }
+        spinning={adding}
+      >
         <div className="relative overflow-hidden shadow dark:shadow-gray-800 group-hover:shadow-lg group-hover:dark:shadow-gray-800 rounded-md duration-500">
           <Image
             src={imageUrl}
@@ -152,29 +168,29 @@ const Card = ({ item }) => {
             )} */}
           </ul>
         </div>
-
-        <div className="mt-4">
-          <Link
-            href={`/product/${item._id}`}
-            className="hover:text-orange-500 text-lg font-medium"
-          >
-            {item.name}
-          </Link>
-          <div className="flex justify-between items-center mt-1">
-            <p>
-              {(item.price - (item.discount / 100) * item.price).toFixed(2)}{" "}
-              <del className="text-slate-400">{item.price}</del>
-            </p>
-            {/* <ul className="font-medium text-amber-400 list-none"> */}
-            <Rating
-              name="half-rating-read"
-              //   defaultValue={item.ratings}
-              value={item.ratings}
-              precision={0.5}
-              size="small"
-              readOnly
-            />
-            {/* <li className="inline">
+      </Spin>
+      <div className="mt-4">
+        <Link
+          href={`/product/${item._id}`}
+          className="hover:text-orange-500 text-lg font-medium"
+        >
+          {item.name}
+        </Link>
+        <div className="flex justify-between items-center mt-1">
+          <p>
+            {(item.price - (item.discount / 100) * item.price).toFixed(2)}{" "}
+            <del className="text-slate-400">{item.price}</del>
+          </p>
+          {/* <ul className="font-medium text-amber-400 list-none"> */}
+          <Rating
+            name="half-rating-read"
+            //   defaultValue={item.ratings}
+            value={item.ratings}
+            precision={0.5}
+            size="small"
+            readOnly
+          />
+          {/* <li className="inline">
               <i className="mdi mdi-star"></i>
             </li>
             <li className="inline">
@@ -189,11 +205,10 @@ const Card = ({ item }) => {
             <li className="inline">
               <i className="mdi mdi-star"></i>
             </li> */}
-            {/* </ul> */}
-          </div>
+          {/* </ul> */}
         </div>
       </div>
-    </Spin>
+    </div>
   );
 };
 

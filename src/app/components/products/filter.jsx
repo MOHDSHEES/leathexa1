@@ -4,6 +4,7 @@ import Link from "next/link";
 import {
   categoriesFilter,
   colorFilter,
+  discount,
   genders,
   sizeFilter,
 } from "../../data/filters";
@@ -139,7 +140,41 @@ export default function Filter({ category, setOpen, filter, applyFilter }) {
           })}
         </ul>
       </div>
-
+      <div className="mt-4">
+        <h5 className="font-medium dark:text-white">Discount:</h5>
+        <ul className="list-none mt-2 space-x-1">
+          {discount.map((item, index) => {
+            return (
+              <li
+                onClick={() =>
+                  setFilterTemp({
+                    ...filterTemp,
+                    discount: filterTemp.discount === item ? null : item,
+                  })
+                }
+                className="inline"
+                key={index}
+              >
+                <button
+                  className={`w-10 h-7 inline-flex items-center justify-center 
+                tracking-wide align-middle text-base text-center rounded-md border border-gray-100 
+                dark:border-gray-800   hover:border-slate-900 
+                dark:hover:border-gray-100 hover:text-white dark:hover:text-slate-900 hover:bg-slate-900 
+                dark:hover:bg-slate-100 text-slate-900 dark:text-gray-50
+               ${
+                 filterTemp.discount === item
+                   ? "text-white bg-orange-500"
+                   : "text-slate-900 dark:text-gray-50"
+               } 
+                `}
+                >
+                  {item}
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
       <div className="mt-4">
         <h5 className="font-medium dark:text-white">Sizes:</h5>
         <ul className="list-none mt-2 space-x-1">

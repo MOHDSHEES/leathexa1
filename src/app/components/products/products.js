@@ -85,7 +85,7 @@ const Products = ({
               <span className="font-semibold">
                 Showing{" "}
                 {loading ? " ..." : products.length + (page - 1) * limit} of{" "}
-                {totalProducts} items
+                {loading ? " ..." : totalProducts} items
               </span>
 
               <div className="flex items-center" style={{ marginLeft: "auto" }}>

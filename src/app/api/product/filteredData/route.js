@@ -18,7 +18,9 @@ export async function POST(req) {
     await dbConnect();
     if (req.method === "POST") {
       const query = { gender: gender };
-
+      if (filter && filter.discount) {
+        query.discount = { $gte: parseFloat(filter.discount.replace("%", "")) };
+      }
       // Filter by color
       if (filter && filter.color && filter.color.length > 0) {
         query["variants.color"] = { $in: filter.color };
@@ -33,7 +35,6 @@ export async function POST(req) {
       if (filter && filter.size && filter.size.length > 0) {
         query["variants.sizes.size"] = { $in: filter.size };
       }
-
       // Fetch products based on the constructed query
       let totalCount = null;
       if (page === 1) totalCount = await Product.countDocuments(query);

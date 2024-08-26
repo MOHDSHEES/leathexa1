@@ -11,3 +11,4 @@ export const categoriesFilter = [
   "Shearing/Furr",
 ];
 export const colorFilter = ["Black", "Brown"];
+export const discount = ["10%", "15%", "20%", "30%", "40%", "50%"];

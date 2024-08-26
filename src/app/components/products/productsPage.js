@@ -32,12 +32,18 @@ export default async function ProductsPage({ params, searchParams }) {
     color: [],
     category: [],
     size: [],
+    discount: null,
   };
   if (["mens", "womens"].includes(params.category)) {
     const filter = {
       gender: category,
     };
-
+    if (searchParams.discount) {
+      (filter.discount = {
+        $gte: parseFloat(searchParams.discount.replace("%", "")),
+      }),
+        (filteredUrl.discount = searchParams.discount);
+    }
     if (searchParams.color) {
       const colors = searchParams.color.split(",");
       filter["variants.color"] = { $in: colors };
