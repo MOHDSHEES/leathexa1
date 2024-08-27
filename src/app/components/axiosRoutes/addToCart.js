@@ -17,7 +17,6 @@ export async function userActivityAnalytics(
   details
 ) {
   let storedSessionId = Cookies.get("sessionId");
-
   if (!storedSessionId) {
     storedSessionId = uuidv4();
     Cookies.set("sessionId", storedSessionId, { expires: 1 });
