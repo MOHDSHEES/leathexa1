@@ -12,7 +12,15 @@ import Footer from "../../components/footer";
 // import EmptyProduct from "../../components/productView/emptyProduct";
 import Loading from "../../components/productView/loadingProduct";
 import ProductView from "../../components/productView/product";
+import Product from "@/models/productModel";
+import dbConnect from "@/lib/mongoose";
 
+// Generate static paths for all product IDs
+export async function generateStaticParams() {
+  await dbConnect();
+  const products = await Product.find({}, "_id").lean(); // Fetching only product IDs
+  return products.map((product) => ({ id: product._id.toString() }));
+}
 // async function getDetails(params) {
 //   await dbConnect();
 //   try {
