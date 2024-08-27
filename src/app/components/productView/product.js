@@ -41,7 +41,7 @@ export default async function ProductView({ params }) {
           <ProductDescription product={product} />
         </div> */}
 
-        <ProductReviewTab product={product} />
+        {/* <ProductReviewTab product={product} /> */}
       </div>
 
       <NewArrivalItem />
