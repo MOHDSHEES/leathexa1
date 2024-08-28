@@ -9,11 +9,11 @@ import EmptyProduct from "./emptyProduct";
 import ProductDetails from "./productDetails";
 
 // This function generates static paths
-export async function generateStaticParams() {
-  await dbConnect();
-  const products = await Product.find({}, "_id").lean(); // Fetching only the product IDs
-  return products.map((product) => ({ id: product._id.toString() }));
-}
+// export async function generateStaticParams() {
+//   await dbConnect();
+//   const products = await Product.find({}, "_id").lean(); // Fetching only the product IDs
+//   return products.map((product) => ({ id: product._id.toString() }));
+// }
 
 async function getDetails(params) {
   await dbConnect();
@@ -41,7 +41,7 @@ export default async function ProductView({ params }) {
           <ProductDescription product={product} />
         </div> */}
 
-        {/* <ProductReviewTab product={product} /> */}
+        <ProductReviewTab product={product} />
       </div>
 
       <NewArrivalItem />
