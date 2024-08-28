@@ -21,18 +21,18 @@ export async function generateStaticParams() {
   const products = await Product.find({}, "_id").lean(); // Fetching only product IDs
   return products.map((product) => ({ id: product._id.toString() }));
 }
-// async function getDetails(params) {
-//   await dbConnect();
-//   try {
-//     const data = await Product.findOne({ _id: params.id });
-//     return JSON.parse(JSON.stringify(data));
-//   } catch (error) {
-//     return null;
-//   }
-// }
+async function getDetails(params) {
+  await dbConnect();
+  try {
+    const data = await Product.findOne({ _id: params.id });
+    return JSON.parse(JSON.stringify(data));
+  } catch (error) {
+    return null;
+  }
+}
 
 export default async function ProductDetails({ params }) {
-  // const product = await getDetails(params);
+  const product = await getDetails(params);
   // if (!product) return <EmptyProduct />;
   return (
     <>
@@ -72,9 +72,9 @@ export default async function ProductDetails({ params }) {
           </div>
         </div>
       </section>
-      <Suspense fallback={<Loading />}>
-        <ProductView params={params} />
-        {/* <section className="relative md:py-24 py-16">
+      {/* <Suspense fallback={<Loading />}> */}
+      <ProductView product={product} />
+      {/* <section className="relative md:py-24 py-16">
           <div className="container relative">
           
             <div className="grid md:grid-cols-2 grid-cols-1 gap-6 items-start ">
@@ -90,7 +90,7 @@ export default async function ProductDetails({ params }) {
 
           <NewArrivalItem />
         </section> */}
-      </Suspense>
+      {/* </Suspense> */}
       {/* </MainLayout> */}
       <Footer />
     </>

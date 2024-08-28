@@ -15,17 +15,17 @@ import ProductDetails from "./productDetails";
 //   return products.map((product) => ({ id: product._id.toString() }));
 // }
 
-async function getDetails(params) {
-  await dbConnect();
-  try {
-    const data = await Product.findOne({ _id: params.id });
-    return JSON.parse(JSON.stringify(data));
-  } catch (error) {
-    return null;
-  }
-}
-export default async function ProductView({ params }) {
-  const product = await getDetails(params);
+// async function getDetails(params) {
+//   await dbConnect();
+//   try {
+//     const data = await Product.findOne({ _id: params.id });
+//     return JSON.parse(JSON.stringify(data));
+//   } catch (error) {
+//     return null;
+//   }
+// }
+export default async function ProductView({ product }) {
+  // const product = await getDetails(params);
   //   console.log(product);
   if (!product) return <EmptyProduct />;
   return (
