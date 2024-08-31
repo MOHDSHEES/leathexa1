@@ -19,6 +19,7 @@ const MyProvider = ({ children, initialUser }) => {
   const [backDropOpen, setBackDropOpen] = useState(false);
   const [cartItems, setCartItems] = useState(null);
   const [cartLoading, setCartLoading] = useState(true);
+  const [wishlist, setWishlist] = useState(null);
 
   // const [csrfToken, setCsrfToken] = useState("");
 
@@ -90,6 +91,8 @@ const MyProvider = ({ children, initialUser }) => {
         setCartItems,
         setCartLoading,
         cartLoading,
+        wishlist,
+        setWishlist,
       }}
     >
       {contextHolder} {children}

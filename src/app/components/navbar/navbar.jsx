@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { FiHeart } from "../../assets/icons/vander";
+// import { FiHeart } from "../../assets/icons/vander";
 import Cart from "./cart";
 import User from "./user";
 import NavbarLogo from "./navbarLogo";
@@ -14,11 +14,11 @@ export default function Navbar({ navClass, navlight }) {
   let [isToggle, setToggle] = useState(false);
   let [menu, setMenu] = useState("");
   let [subMenu, setSubMenu] = useState("");
-  let [isOpen, setIsOpen] = useState(false);
+  // let [isOpen, setIsOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   let [cartMenu, setCartMenu] = useState(false);
   let [userMenu, setUserMenu] = useState(false);
-  let dropdownRef = useRef(null);
+  // let dropdownRef = useRef(null);
   let cartRef = useRef(null);
   let userRef = useRef(null);
 
@@ -27,11 +27,11 @@ export default function Navbar({ navClass, navlight }) {
       const isScrolling = window.scrollY > 50;
       setScrolling(isScrolling);
     };
-    const handleOutsideClick = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setIsOpen(false);
-      }
-    };
+    // const handleOutsideClick = (event) => {
+    //   if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+    //     setIsOpen(false);
+    //   }
+    // };
     const cartOutsideClick = (event) => {
       if (cartRef.current && !cartRef.current.contains(event.target)) {
         setCartMenu(false);
@@ -43,7 +43,7 @@ export default function Navbar({ navClass, navlight }) {
       }
     };
     window.addEventListener("scroll", handleScroll);
-    window.addEventListener("click", handleOutsideClick);
+    // window.addEventListener("click", handleOutsideClick);
     window.addEventListener("click", cartOutsideClick);
     window.addEventListener("click", userOutsideClick);
 
@@ -54,7 +54,7 @@ export default function Navbar({ navClass, navlight }) {
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("click", handleOutsideClick);
+      // window.removeEventListener("click", handleOutsideClick);
       window.removeEventListener("click", cartOutsideClick);
       window.removeEventListener("click", userOutsideClick);
     };
@@ -93,7 +93,7 @@ export default function Navbar({ navClass, navlight }) {
           <ul className="buy-button list-none mb-0">
             <li
               className="dropdown inline-block relative pe-1 nav-item"
-              ref={dropdownRef}
+              // ref={dropdownRef}
             >
               <NavSearch
                 navlight={navlight}
@@ -109,14 +109,14 @@ export default function Navbar({ navClass, navlight }) {
               <Cart cartMenu={cartMenu} setCartMenu={setCartMenu} />
             </li>
 
-            <li className="inline-block ps-0.5 nav-item">
+            {/* <li className="inline-block ps-0.5 nav-item">
               <Link
                 href="#"
                 className="size-9 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-base text-center rounded-full bg-orange-500 text-white"
               >
                 <FiHeart data-feather="heart" className="h-4 w-4"></FiHeart>
               </Link>
-            </li>
+            </li> */}
 
             <li
               className="dropdown inline-block relative ps-0.5 nav-item"

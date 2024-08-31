@@ -8,6 +8,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { MyContext } from "@/src/context";
 import { closeMessage } from "../functions/message";
 import axios from "axios";
+import discountPrice from "../functions/discountPrice";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -59,9 +60,10 @@ const Cart = ({ cartMenu, setCartMenu }) => {
     const calculateTotalPrice = () => {
       if (!cartItems || !cartItems.cartItems) return 0;
       return cartItems.cartItems.reduce((total, item) => {
-        const discountedPrice =
-          item.product.price -
-          item.product.price * (item.product.discount / 100);
+        const discountedPrice = discountPrice(
+          item.product.price,
+          item.product.discount
+        );
         return total + discountedPrice * item.quantity;
       }, 0);
     };
@@ -141,18 +143,14 @@ const Cart = ({ cartMenu, setCartMenu }) => {
                   )}
                 </Stack>
               ) : (
-                // <Stack spacing={1}>
-                //   <Skeleton variant="rounded" height={60} />
-                //   <Skeleton variant="rounded" height={60} />
-                // </Stack>
                 cartItems &&
                 cartItems.cartItems &&
                 cartItems.cartItems.length > 0 &&
                 cartItems.cartItems.slice(0, 4).map((item, idx) => {
-                  const netPrice = (
-                    item.product.price -
-                    (item.product.price * item.product.discount) / 100
-                  ).toFixed(2);
+                  const netPrice = discountPrice(
+                    item.product.price,
+                    item.product.discount
+                  );
                   return (
                     <li className="ms-0" key={idx}>
                       <Link

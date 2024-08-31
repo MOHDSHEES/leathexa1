@@ -1,8 +1,6 @@
 import React from "react";
 // import ProductImages from "./productImages";
 import ProductReviewTab from "./productReview/product-review-tab";
-import dbConnect from "@/lib/mongoose";
-import Product from "@/models/productModel";
 import NewArrivalItem from "./newArrival";
 // import ProductDescription from "./product-description";
 import EmptyProduct from "./emptyProduct";

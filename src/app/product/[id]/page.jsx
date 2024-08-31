@@ -1,16 +1,8 @@
 import React, { Suspense } from "react";
 import Link from "next/link";
 import Tagline from "../../components/tagline";
-// import ProductDetail from "../../components/productView/product-detail";
 import Navbar from "../../components/navbar/navbar";
-// import dbConnect from "@/lib/mongoose";
-// import Product from "@/models/productModel";
-// import ProductImages from "../../components/productView/productImages";
-// import ProductReviewTab from "../../components/productView/productReview/product-review-tab";
-// import NewArrivalItem from "../../components/productView/newArrival";
 import Footer from "../../components/footer";
-// import EmptyProduct from "../../components/productView/emptyProduct";
-import Loading from "../../components/productView/loadingProduct";
 import ProductView from "../../components/productView/product";
 import Product from "@/models/productModel";
 import dbConnect from "@/lib/mongoose";

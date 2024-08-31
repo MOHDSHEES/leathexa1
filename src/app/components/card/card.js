@@ -1,16 +1,20 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { useContext, useState } from "react";
-import { FiHeart, FiEye, FiBookmark } from "../../assets/icons/vander";
 import { Rating } from "@mui/material";
 import { MyContext } from "@/src/context";
 import { closeMessage } from "../functions/message";
 import { Spin } from "antd";
-import addToCart, { userActivityAnalytics } from "../axiosRoutes/addToCart";
+import addToCart from "../axiosRoutes/addToCart";
 import { useRouter } from "next/navigation";
+import addToWishlist from "../axiosRoutes/wishlist";
+import userActivityAnalytics from "../axiosRoutes/userActivityAnalytics";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import discountPrice from "../functions/discountPrice";
 
 const Card = ({ item }) => {
-  const { user, messageApi, setUser } = useContext(MyContext);
+  const { user, messageApi, setUser, setWishlist, wishlist } =
+    useContext(MyContext);
   const router = useRouter();
   const [adding, setAdding] = useState(false);
   const imageUrl =
@@ -39,7 +43,11 @@ const Card = ({ item }) => {
 
     if (data.status === 200) {
       closeMessage(messageApi, "Item Added Successfully", "success");
-      setUser({ ...user, itemsInCart: data.data.cartItems.length });
+      setUser((prevUser) => ({
+        ...prevUser,
+        itemsInCart: prevUser.itemsInCart + 1,
+      }));
+
       userActivityAnalytics(
         user._id,
         "add_to_cart",
@@ -54,6 +62,32 @@ const Card = ({ item }) => {
           },
         }
       );
+    } else closeMessage(messageApi, data.msg);
+    setAdding(false);
+  }
+
+  async function wishlistProduct() {
+    if (!user) {
+      router.push("/auth/login");
+      //  closeMessage(messageApi, "Login to Add Product.", "error");
+      return;
+    }
+    setAdding(true);
+    const data = await addToWishlist({
+      userId: user._id,
+      product: item._id,
+    });
+
+    if (data.status === 200) {
+      closeMessage(messageApi, "Item Added Successfully", "success");
+      // setWishlist([...wishlist,{product:item._id,}])
+      setUser((user) => ({
+        ...user,
+        itemsInWishlist: user.itemsInWishlist + 1,
+      }));
+      userActivityAnalytics(user._id, "add_to_wishlist", {
+        product: item._id,
+      });
     } else closeMessage(messageApi, data.msg);
     setAdding(false);
   }
@@ -78,16 +112,17 @@ const Card = ({ item }) => {
         spinning={adding}
       >
         <div className="relative overflow-hidden shadow dark:shadow-gray-800 group-hover:shadow-lg group-hover:dark:shadow-gray-800 rounded-md duration-500">
-          <Image
-            src={imageUrl}
-            width={0}
-            height={0}
-            sizes="100vw"
-            style={{ width: "100%", height: "auto" }}
-            className="group-hover:scale-110 duration-500"
-            alt=""
-          />
-
+          <Link href={`/product/${item._id}`}>
+            <Image
+              src={imageUrl}
+              width={0}
+              height={0}
+              sizes="100vw"
+              style={{ width: "100%", height: "auto" }}
+              className="group-hover:scale-110 duration-500"
+              alt=""
+            />
+          </Link>
           <div className="absolute -bottom-20 group-hover:bottom-3 start-3 end-3 duration-500">
             <button
               onClick={addProductToCart}
@@ -101,27 +136,29 @@ const Card = ({ item }) => {
             <li>
               <button
                 //   href="#"
+                onClick={wishlistProduct}
                 className="size-10 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-center rounded-full bg-white text-slate-900 hover:bg-slate-900 hover:text-white shadow"
               >
-                <FiHeart className="size-4"></FiHeart>
+                <FavoriteBorderIcon className="size-4" />
+                {/* <FiHeart className="size-4"></FiHeart> */}
               </button>
             </li>
-            <li className="mt-1 ms-0">
+            {/* <li className="mt-1 ms-0">
               <Link
                 href="/shop-item-detail"
                 className="size-10 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-center rounded-full bg-white text-slate-900 hover:bg-slate-900 hover:text-white shadow"
               >
                 <FiEye className="size-4"></FiEye>
               </Link>
-            </li>
-            <li className="mt-1 ms-0">
+            </li> */}
+            {/* <li className="mt-1 ms-0">
               <Link
                 href="#"
                 className="size-10 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-center rounded-full bg-white text-slate-900 hover:bg-slate-900 hover:text-white shadow"
               >
                 <FiBookmark className="size-4"></FiBookmark>
               </Link>
-            </li>
+            </li> */}
           </ul>
 
           <ul className="list-none absolute top-[10px] start-4">
@@ -181,7 +218,7 @@ const Card = ({ item }) => {
         </Link>
         <div className="flex justify-between items-center mt-1">
           <p>
-            {(item.price - (item.discount / 100) * item.price).toFixed(2)}{" "}
+            {discountPrice(item.price, item.discount)}{" "}
             <del className="text-slate-400">{item.price}</del>
           </p>
           {/* <ul className="font-medium text-amber-400 list-none"> */}

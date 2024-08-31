@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Skeleton } from "@mui/material";
 import { Spin } from "antd";
 import Link from "next/link";
+import discountPrice from "../functions/discountPrice";
 
 const CartTableRow = ({
   removeItem,
@@ -69,11 +70,14 @@ const CartTableRow = ({
       </td>
       <td className="p-4  text-end">
         ${" "}
-        {(
-          (item.product.price -
-            item.product.price * (item.product.discount / 100)) *
-          item.quantity
-        ).toFixed(2)}
+        {
+          discountPrice(item.product.price, item.product.discount)
+          // (
+          //   (item.product.price -
+          //     item.product.price * (item.product.discount / 100)) *
+          //   item.quantity
+          // ).toFixed(2)
+        }
       </td>
     </tr>
   );

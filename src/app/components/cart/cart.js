@@ -94,7 +94,7 @@ const Cart = () => {
             setCartItems={setCartItems}
           />
         ) : (
-          <EmptyCart />
+          <EmptyCart msg="Looks like your cart is empty. Start shopping to fill it up!" />
         )}
 
         {/* <MobileApp /> */}

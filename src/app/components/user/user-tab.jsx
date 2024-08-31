@@ -10,6 +10,7 @@ import ReceiptLongIcon from "@mui/icons-material/ReceiptLong";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
 import LogoutIcon from "@mui/icons-material/Logout";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
 export default function Usertab() {
   const { user, setBackDropOpen } = useContext(MyContext);
@@ -157,17 +158,18 @@ export default function Usertab() {
 
               <li
                 className={`navbar-item account-menu ms-0 ${
-                  current === "/user-social" ? "active" : ""
+                  current === "/user/wishlist" ? "active" : ""
                 }`}
               >
                 <Link
-                  href="/user-social"
+                  href="/user/wishlist"
                   className="navbar-link text-slate-400 flex items-center py-2 rounded"
                 >
                   <span className="me-2 mb-0">
-                    <FiShare2 className="size-4"></FiShare2>
+                    {/* <FiShare2 className="size-4"></FiShare2> */}
+                    <FavoriteBorderIcon className="size-4" />
                   </span>
-                  <h6 className="mb-0 font-medium">Social Profile</h6>
+                  <h6 className="mb-0 font-medium">Wishlist</h6>
                 </Link>
               </li>
 

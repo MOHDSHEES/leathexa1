@@ -4,8 +4,10 @@ import Link from "next/link";
 import { Rating } from "@mui/material";
 import { closeMessage, openMessage } from "../functions/message";
 import { MyContext } from "@/src/context";
-import addToCart, { userActivityAnalytics } from "../axiosRoutes/addToCart";
+import addToCart from "../axiosRoutes/addToCart";
 import { useRouter } from "next/navigation";
+import userActivityAnalytics from "../axiosRoutes/userActivityAnalytics";
+import discountPrice from "../functions/discountPrice";
 
 export default function ProductDescription({
   product,
@@ -87,15 +89,19 @@ export default function ProductDescription({
       {/* <div className="mt-2"> */}
       <div className="flex  items-center mt-2">
         <span className="text-slate-400 font-semibold me-1">
-          {selectedSize && selectedSize.price
-            ? (
-                selectedSize.price -
-                (selectedSize.price * product.discount) / 100
-              ).toFixed(2)
-            : (
-                product.price -
-                (product.price * product.discount) / 100
-              ).toFixed(2)}
+          {
+            selectedSize && selectedSize.price
+              ? discountPrice(selectedSize.price, product.discount)
+              : // (
+                //     selectedSize.price -
+                //     (selectedSize.price * product.discount) / 100
+                //   ).toFixed(2)
+                discountPrice(product.price, product.discount)
+            // (
+            //     product.price -
+            //     (product.price * product.discount) / 100
+            //   ).toFixed(2)
+          }
           <del className="text-red-600" style={{ marginLeft: "5px" }}>
             {selectedSize && selectedSize.price
               ? selectedSize.price

@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import ProductImages from "./productImages";
 import ProductDescription from "./product-description";
 import { MyContext } from "@/src/context";
-import { userActivityAnalytics } from "../axiosRoutes/addToCart";
+import userActivityAnalytics from "../axiosRoutes/userActivityAnalytics";
 
 const ProductDetails = ({ product }) => {
   const [selectedColor, setSelectedColor] = useState(product.variants[0].color);

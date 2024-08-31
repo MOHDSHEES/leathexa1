@@ -106,14 +106,14 @@ const LoginComponent = () => {
                   <div className="text-center">
                     <Link href="/">
                       <Image
-                        src="/images/logo-dark.png"
+                        src="/images/logo/s-logo-black.png"
                         width={114}
                         height={22}
                         className="mx-auto block dark:hidden"
                         alt=""
                       />
                       <Image
-                        src="/images/logo-light.png"
+                        src="/images/logo/s-logo-white.png"
                         width={114}
                         height={22}
                         className="mx-auto hidden dark:block"

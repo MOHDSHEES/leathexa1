@@ -98,17 +98,6 @@ const Products = ({
                 </IconButton>
                 {/* <Button onClick={toggleDrawer(true)}>Open drawer</Button> */}
               </div>
-              {/* <div className="md:flex items-center">
-                  <label className="font-semibold md:me-2">Sort by:</label>
-                  <select className="form-select form-input md:w-36 w-full md:mt-0 mt-1 py-2 px-3 h-10 bg-transparent dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 dark:border-gray-800 focus:ring-0">
-                    <option defaultValue="">Featured</option>
-                    <option defaultValue="">Sale</option>
-                    <option defaultValue="">Alfa A-Z</option>
-                    <option defaultValue="">Alfa Z-A</option>
-                    <option defaultValue="">Price Low-High</option>
-                    <option defaultValue="">Price High-Low</option>
-                  </select>
-                </div> */}
             </div>
             {/* <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2  grid-cols-1 gap-6"> */}
             {loading ? (

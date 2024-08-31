@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import trimText from "../functions/trimText";
 import createOrderId from "../functions/razorpay/getOrderId";
 import { Button, Skeleton, Stack } from "@mui/material";
+import discountPrice from "../functions/discountPrice";
 
 const CheckoutProducts = ({ items }) => {
   const [total, setTotal] = useState(0);
@@ -11,9 +12,12 @@ const CheckoutProducts = ({ items }) => {
     const calculateTotalPrice = () => {
       if (!items || !items.cartItems) return 0;
       return items.cartItems.reduce((total, item) => {
-        const discountedPrice =
-          item.product.price -
-          item.product.price * (item.product.discount / 100);
+        const discountedPrice = discountPrice(
+          item.product.price,
+          item.product.discount
+        );
+        // item.product.price -
+        // item.product.price * (item.product.discount / 100);
         return total + discountedPrice * item.quantity;
       }, 0);
     };
@@ -109,10 +113,13 @@ const CheckoutProducts = ({ items }) => {
                   </div>
 
                   <p className="text-slate-400 font-semibold">
-                    {(
-                      product.price -
-                      (product.price * product.discount) / 100
-                    ).toFixed(2)}
+                    {
+                      discountPrice(product.price, product.discount)
+                      // (
+                      //   product.price -
+                      //   (product.price * product.discount) / 100
+                      // ).toFixed(2)
+                    }
                   </p>
                 </div>
               );

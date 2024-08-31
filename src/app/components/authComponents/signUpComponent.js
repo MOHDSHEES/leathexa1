@@ -109,29 +109,28 @@ const SignUpComponent = () => {
                   />
                 </div>
                 <div className="p-8 lg:px-20">
-                  <div className="text-center">
-                    <Link href="/">
-                      <Image
-                        src="/images/logo-dark.png"
-                        width={114}
-                        height={22}
-                        className="mx-auto block dark:hidden"
-                        alt=""
-                      />
-                      <Image
-                        src="/images/logo-light.png"
-                        width={114}
-                        height={22}
-                        className="mx-auto hidden dark:block"
-                        alt=""
-                      />
-                    </Link>
-                  </div>
-
-                  <form
-                    onSubmit={submitHandler}
-                    className="text-start lg:py-20 py-8"
-                  >
+                  <form onSubmit={submitHandler} className="text-start  py-8">
+                    <div
+                      style={{ marginBottom: "20px" }}
+                      className="text-center lg:my-10"
+                    >
+                      <Link href="/">
+                        <Image
+                          src="/images/logo/s-logo-black.png"
+                          width={114}
+                          height={22}
+                          className="mx-auto block dark:hidden"
+                          alt=""
+                        />
+                        <Image
+                          src="/images/logo/s-logo-white.png"
+                          width={114}
+                          height={22}
+                          className="mx-auto hidden dark:block"
+                          alt=""
+                        />
+                      </Link>
+                    </div>
                     <fieldset disabled={disable}>
                       <div className="grid grid-cols-1">
                         <div className="mb-4">
